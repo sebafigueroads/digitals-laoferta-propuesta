@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>La Oferta · v3 Cinematográfica · Award-winning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:ital,wght@0,400;0,700;0,800;0,900;1,900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/styles.css"/>
+<style>
+  /* === V3 CATÁLOGO · cinematográfica · award-winning === */
+  body { background: #04060C; cursor: none; }
+
+  /* CUSTOM CURSOR · Cuenta digital frame */
+  .cursor-frame {
+    position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+    width: 60px; height: 60px; transform: translate(-50%, -50%);
+    transition: width .3s, height .3s, opacity .2s;
+    mix-blend-mode: difference;
+  }
+  .cursor-frame::before, .cursor-frame::after,
+  .cursor-frame i::before, .cursor-frame i::after {
+    content: ""; position: absolute; width: 12px; height: 12px;
+    border: 1.5px solid #FFCE00;
+  }
+  .cursor-frame::before { top: 0; left: 0; border-right: none; border-bottom: none; }
+  .cursor-frame::after { top: 0; right: 0; border-left: none; border-bottom: none; }
+  .cursor-frame i::before { bottom: 0; left: 0; border-right: none; border-top: none; }
+  .cursor-frame i::after { bottom: 0; right: 0; border-left: none; border-top: none; }
+  .cursor-dot {
+    position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+    width: 5px; height: 5px; background: #FFCE00; border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 14px rgba(255,206,0,0.8);
+  }
+  @media (hover: none) { .cursor-frame, .cursor-dot { display: none; } body { cursor: auto; } }
+
+  /* HERO · cinematic video bg */
+  .cinema-hero {
+    position: relative; min-height: 100vh; overflow: hidden;
+    padding: 8rem clamp(2rem, 5vw, 5rem) 4rem;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .cinema-hero::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 20% 80%, rgba(255,206,0,0.18), transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(163,230,53,0.08), transparent 50%),
+      linear-gradient(180deg, rgba(4,6,12,0.6) 0%, #04060C 100%);
+    z-index: 0;
+  }
+  .cinema-hero::after {
+    content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background-image: linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  /* Cinematic noise */
+  .noise {
+    position: fixed; inset: 0; pointer-events: none; z-index: 50;
+    opacity: 0.06; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Holos */
+  .cinema-holo-1 { position: absolute; font-family: var(--f-display); font-size: clamp(10rem, 22vw, 28rem); line-height: 0.84; color: transparent; -webkit-text-stroke: 1.5px rgba(255,206,0,0.18); opacity: 0.6; top: -100px; right: -60px; z-index: 0; letter-spacing: 0.015em; }
+  .cinema-holo-2 { position: absolute; font-family: var(--f-display); font-size: clamp(6rem, 12vw, 14rem); line-height: 1; color: rgba(255,255,255,0.025); opacity: 1; bottom: 20vh; left: -40px; z-index: 0; letter-spacing: 0.015em; }
+
+  /* Hero title animation */
+  .cinema-title {
+    font-family: var(--f-display); font-weight: 400;
+    font-size: clamp(4rem, 13vw, 14rem);
+    line-height: 0.82; letter-spacing: 0.005em; text-transform: uppercase;
+    color: #fff; position: relative; z-index: 5;
+    opacity: 0; animation: cinemaTitle 1.4s cubic-bezier(0.2, 1, 0.3, 1) .4s forwards;
+  }
+  @keyframes cinemaTitle { from { opacity: 0; transform: translateY(40px); filter: blur(8px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+  .cinema-title-l2 { color: var(--cnt-yellow); font-style: italic; font-family: var(--f-body); font-weight: 900; font-size: 0.92em; letter-spacing: -0.025em; text-transform: none; }
+
+  /* Live status badge */
+  .live-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 16px; border-radius: 999px;
+    background: rgba(163,230,53,0.10); border: 1px solid rgba(163,230,53,0.30);
+    font-family: var(--f-mono); font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase; color: #A3E635;
+    margin-bottom: 1.4rem;
+  }
+  .live-badge .pulse {
+    width: 8px; height: 8px; border-radius: 50%; background: #A3E635;
+    box-shadow: 0 0 12px rgba(163,230,53,0.7);
+    animation: pulseRing 1.8s infinite;
+  }
+  @keyframes pulseRing {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(163,230,53,0.7); }
+    50% { box-shadow: 0 0 0 12px rgba(163,230,53,0); }
+  }
+
+  /* CTA buttons */
+  .cinema-cta-row { display: flex; gap: 14px; margin-top: 2.4rem; flex-wrap: wrap; }
+  .cinema-btn {
+    position: relative; display: inline-flex; align-items: center; gap: 12px;
+    padding: 16px 28px; border-radius: 999px; overflow: hidden;
+    font-family: var(--f-body); font-weight: 700; font-size: .92rem;
+    letter-spacing: 0.02em; cursor: none; transition: all .3s var(--ease);
+  }
+  .cinema-btn-primary { background: var(--cnt-yellow); color: #fff; }
+  .cinema-btn-primary::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(135deg, #FF3D45, var(--cnt-yellow-deep));
+    opacity: 0; transition: opacity .3s;
+  }
+  .cinema-btn-primary:hover { transform: translateY(-3px); box-shadow: 0 20px 50px rgba(255,206,0,0.4); }
+  .cinema-btn-primary:hover::before { opacity: 1; }
+  .cinema-btn-primary span { position: relative; z-index: 2; }
+  .cinema-btn-ghost {
+    background: transparent; color: #fff; border: 1px solid var(--cnt-line);
+  }
+  .cinema-btn-ghost:hover { border-color: var(--cnt-yellow); background: rgba(255,206,0,0.08); }
+
+  /* Hero stats */
+  .cinema-stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+    padding-top: 2.4rem; margin-top: 4rem; border-top: 1px solid var(--cnt-line);
+    position: relative; z-index: 5;
+  }
+  @media (max-width: 980px) { .cinema-stats { grid-template-columns: 1fr 1fr; } }
+
+  /* Marquee section */
+  .cinema-marquee-section {
+    padding: 4rem 0; position: relative;
+    background: linear-gradient(180deg, transparent, rgba(255,206,0,0.04));
+    border-top: 1px solid var(--cnt-line); border-bottom: 1px solid var(--cnt-line);
+  }
+
+  /* Services with 3D tilt */
+  .cinema-services { padding: 8rem clamp(2rem, 5vw, 5rem); position: relative; }
+  .cinema-svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 3rem; }
+  @media (max-width: 980px) { .cinema-svc-grid { grid-template-columns: 1fr; } }
+
+  .cinema-svc-card {
+    position: relative; padding: 2.4rem 2rem 2.8rem;
+    background: linear-gradient(180deg, var(--cnt-card), #0E1218);
+    border: 1px solid var(--cnt-line); border-radius: 22px;
+    overflow: hidden; cursor: none;
+    transition: transform .5s var(--ease), border-color .3s;
+    transform-style: preserve-3d;
+  }
+  .cinema-svc-card::before {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(255,206,0,0.15), transparent 60%);
+    opacity: 0; transition: opacity .5s;
+  }
+  .cinema-svc-card:hover::before { opacity: 1; }
+  .cinema-svc-card:hover {
+    border-color: rgba(255,206,0,0.45);
+    transform: perspective(1200px) rotateX(2deg) rotateY(-3deg) translateY(-8px) translateZ(20px);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 60px rgba(255,206,0,0.15);
+  }
+  .cinema-svc-icon {
+    width: 60px; height: 60px; border-radius: 16px;
+    background: rgba(255,206,0,0.12); border: 1px solid rgba(255,206,0,0.30);
+    display: grid; place-items: center; color: var(--cnt-yellow);
+    margin-bottom: 1.6rem;
+  }
+  .cinema-svc-num {
+    position: absolute; top: 1.6rem; right: 1.6rem;
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.22em;
+    color: var(--cnt-mute); font-weight: 700;
+  }
+  .cinema-svc-card h3 {
+    font-family: var(--f-display); font-weight: 400;
+    font-size: 1.7rem; letter-spacing: 0.015em; text-transform: uppercase;
+    line-height: 1.05; margin-bottom: .8rem; color: #fff;
+  }
+  .cinema-svc-card p { font-size: .95rem; line-height: 1.6; color: var(--cnt-ink-2); }
+  .cinema-svc-arrow {
+    position: absolute; bottom: 1.6rem; right: 1.6rem;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(255,255,255,0.05); border: 1px solid var(--cnt-line);
+    display: grid; place-items: center; color: var(--cnt-yellow);
+    transition: transform .4s var(--ease), background .3s;
+  }
+  .cinema-svc-card:hover .cinema-svc-arrow { background: var(--cnt-yellow); color: #fff; transform: rotate(-45deg); }
+
+  /* Catálogo Dashboard mock */
+  .soc-section {
+    padding: 8rem clamp(2rem, 5vw, 5rem); position: relative;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(255,206,0,0.06), transparent 70%);
+  }
+  .soc-frame {
+    position: relative; max-width: 1100px; margin: 3rem auto 0;
+    border-radius: 22px; background: linear-gradient(180deg, #1A1A1A, #0A0A0A);
+    border: 1px solid var(--cnt-line); padding: 1.5rem; overflow: hidden;
+    box-shadow: 0 60px 120px rgba(0,0,0,0.5), 0 0 80px rgba(255,206,0,0.08);
+  }
+  .soc-titlebar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 1rem; margin-bottom: 1.2rem; border-bottom: 1px solid var(--cnt-line);
+  }
+  .soc-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .soc-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1rem; }
+  @media (max-width: 800px) { .soc-grid { grid-template-columns: 1fr; } }
+  .radar-box {
+    aspect-ratio: 1/1; position: relative; border-radius: 14px;
+    background: radial-gradient(circle, rgba(255,206,0,0.08), transparent 70%), #0A0A0A;
+    border: 1px solid var(--cnt-line); overflow: hidden;
+  }
+  .radar-sweep {
+    position: absolute; inset: 0;
+    background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(255,206,0,0.3) 40deg, transparent 50deg);
+    animation: radarSweep 4s linear infinite;
+  }
+  @keyframes radarSweep { to { transform: rotate(360deg); } }
+  .radar-ring {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    border: 1px solid rgba(255,206,0,0.20); border-radius: 50%;
+  }
+  .radar-ring.r1 { width: 30%; height: 30%; }
+  .radar-ring.r2 { width: 60%; height: 60%; }
+  .radar-ring.r3 { width: 90%; height: 90%; }
+  .radar-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 12px; height: 12px; border-radius: 50%; background: var(--cnt-yellow); box-shadow: 0 0 20px rgba(255,206,0,0.8); }
+  .radar-blip {
+    position: absolute; width: 8px; height: 8px; border-radius: 50%;
+    background: #FBBF24; box-shadow: 0 0 12px rgba(251,191,36,0.6);
+    animation: blipPulse 1.4s ease-in-out infinite;
+  }
+  @keyframes blipPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.6); } }
+
+  .soc-metrics { display: grid; gap: .7rem; }
+  .soc-metric {
+    padding: 1rem 1.2rem; border-radius: 12px; background: rgba(255,255,255,0.02);
+    border: 1px solid var(--cnt-line);
+  }
+  .soc-metric-lbl { font-family: var(--f-mono); font-size: 9.5px; letter-spacing: 0.22em; color: var(--cnt-mute); text-transform: uppercase; margin-bottom: .4rem; }
+  .soc-metric-val { font-family: var(--f-display); font-size: 2.2rem; line-height: 1; letter-spacing: -0.01em; }
+
+  /* CTA section */
+  .cta-final {
+    padding: 8rem clamp(2rem, 5vw, 5rem); position: relative;
+    text-align: center;
+    background: radial-gradient(ellipse 60% 80% at 50% 100%, rgba(255,206,0,0.10), transparent 70%);
+    border-top: 1px solid var(--cnt-line);
+  }
+  .cta-shield {
+    width: 80px; height: 80px; margin: 0 auto 2rem;
+    color: var(--cnt-yellow);
+    animation: shieldFloat 3.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 40px rgba(255,206,0,0.4));
+  }
+  @keyframes shieldFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  /* Footer */
+  .cinema-footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 3rem; }
+  @media (max-width: 980px) { .cinema-footer-grid { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="cursor-frame" id="cf"><i></i></div>
+<div class="cursor-dot" id="cd"></div>
+<div class="noise"></div>
+
+<!-- TOPBAR -->
+<header class="cnt-topbar">
+  <a href="#" class="cnt-logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#FFCE00" stroke-width="2"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Cent<span class="dot">i</span>nel
+  </a>
+  <nav class="cnt-nav">
+    <a href="#servicios">Servicios</a>
+    <a href="#soc">Catálogo Live</a>
+    <a href="#sectores">Sectores</a>
+    <a href="#casos">Casos</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+  <a href="#contacto" class="cnt-cta">Cotizar →</a>
+</header>
+
+<!-- HERO · cinematográfica -->
+<section class="cinema-hero">
+  <video autoplay muted loop playsinline poster="hero-poster.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;z-index:0;">
+    <source src="hero.mp4" type="video/mp4"/>
+  </video>
+  <div class="cinema-holo-1">LA OFERTA</div>
+  <div class="cinema-holo-2">CATÁLOGO LIVE</div>
+  <div class="cnt-scan"></div>
+
+  <div style="position: relative; z-index: 5; max-width: 1320px; width: 100%;">
+    <span class="live-badge"><span class="pulse"></span>Catálogo Operativo · 24/7 · Live</span>
+
+    <h1 class="cinema-title">
+      Te traemos<br/><span class="cinema-title-l2">lo que no se ve.</span>
+    </h1>
+
+    <p class="cnt-hero-sub cnt-fade cnt-fade-d2">
+      17 locales en Santiago con los mejores precios mayoristas de Chile · Club WhatsApp con ofertas flash. Equipos Servicio premium entrenados, monitoreo Catálogo 24/7, respuesta promedio 4 minutos · cumplimiento normativo total. Más que retail mayorista · <strong style="color: var(--cnt-yellow)">tu socio en mayorista</strong>.
+    </p>
+
+    <div class="cinema-cta-row cnt-fade cnt-fade-d3">
+      <a href="#contacto" class="cinema-btn cinema-btn-primary"><span>Cotiza tu plan</span><span>→</span></a>
+      <a href="#soc" class="cinema-btn cinema-btn-ghost">Ver Catálogo en vivo</a>
+    </div>
+
+    <div class="cinema-stats cnt-fade cnt-fade-d4">
+      <div>
+        <div class="cnt-stat-num" style="color: var(--cnt-yellow);">25<span class="suf">+</span></div>
+        <div class="cnt-stat-lbl">Años operando</div>
+      </div>
+      <div>
+        <div class="cnt-stat-num" style="color: #FBBF24;">4<span class="suf">min</span></div>
+        <div class="cnt-stat-lbl">Respuesta promedio</div>
+      </div>
+      <div>
+        <div class="cnt-stat-num" style="color: #A3E635;">10K<span class="suf">+</span></div>
+        <div class="cnt-stat-lbl">Incidencias / mes</div>
+      </div>
+      <div>
+        <div class="cnt-stat-num" style="color: #fff;">100<span class="suf">%</span></div>
+        <div class="cnt-stat-lbl">100% productos disponibles</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="position: absolute; bottom: 0; left: 0; right: 0;"><div class="cnt-brand-bar"><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+</section>
+
+<!-- MARQUEE · keywords -->
+<section class="cinema-marquee-section">
+  <div class="cnt-marquee">
+    <div class="cnt-marquee-track">
+      <span class="cnt-marquee-item">Mayorista <span class="dot"></span> Catálogo digital <span class="dot"></span> 17 locales activos <span class="dot"></span> 100% productos disponibles <span class="dot"></span> Precios imbatibles <span class="dot"></span></span>
+      <span class="cnt-marquee-item">Mayorista <span class="dot"></span> Catálogo digital <span class="dot"></span> 17 locales activos <span class="dot"></span> 100% productos disponibles <span class="dot"></span> Precios imbatibles <span class="dot"></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS · 3D tilt cards -->
+<section id="servicios" class="cinema-services">
+  <div class="cnt-section-head">
+    <div class="cnt-kicker">Servicios · 6 capas operativas</div>
+    <h2 class="cnt-display-md" style="margin-top: 1rem; max-width: 900px;">Cada vértice protegido <span class="cnt-hl">desde el primer día</span>.</h2>
+  </div>
+
+  <div class="cinema-svc-grid">
+    <article class="cinema-svc-card">
+      <span class="cinema-svc-num">/01</span>
+      <div class="cinema-svc-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z"/></svg>
+      </div>
+      <h3>Atención presencial</h3>
+      <p>Vendedores Servicio premium con equipamiento profesional + supervisión rotativa + reportería diaria al cliente. Cobertura 24/7 con SLA de respuesta.</p>
+      <div class="cinema-svc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+    </article>
+
+    <article class="cinema-svc-card">
+      <span class="cinema-svc-num">/02</span>
+      <div class="cinema-svc-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+      <h3>Catálogo digital 24/7</h3>
+      <p>Central de operaciones propia · agentes en turno permanente · sistemas Cuenta digital + alarmas integradas · radar geolocalizado de ventas en vivo.</p>
+      <div class="cinema-svc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+    </article>
+
+    <article class="cinema-svc-card">
+      <span class="cinema-svc-num">/03</span>
+      <div class="cinema-svc-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 17h2l1-4v-3l-1-2h-3"/><path d="M5 17h11"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 14V8h11v6"/></svg>
+      </div>
+      <h3>Despacho mayorista</h3>
+      <p>Vehículos blindados + escoltas armados certificados + tracking en tiempo real + póliza completa. Operación bancaria, retail y corporativo.</p>
+      <div class="cinema-svc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+    </article>
+
+    <article class="cinema-svc-card">
+      <span class="cinema-svc-num">/04</span>
+      <div class="cinema-svc-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h18M12 3v18"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+      </div>
+      <h3>Cuenta Club VIP</h3>
+      <p>Sistemas biométricos + tarjetas + reconocimiento facial IA + registro digital de visitas. Integración con plataformas corporativas existentes.</p>
+      <div class="cinema-svc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+    </article>
+
+    <article class="cinema-svc-card">
+      <span class="cinema-svc-num">/05</span>
+      <div class="cinema-svc-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      </div>
+      <h3>Eventos corporativos</h3>
+      <p>Equipos especializados para eventos masivos, corporativos y privados. Coordinación con Club WhatsApp + Bomberos + ambulancia médica · setup en 48h.</p>
+      <div class="cinema-svc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+    </article>
+
+    <article class="cinema-svc-card">
+      <span class="cinema-svc-num">/06</span>
+      <div class="cinema-svc-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
+      </div>
+      <h3>Compradores frecuentes</h3>
+      <p>Condominios + comunidades cerradas + casas particulares de alto patrimonio. Servicio discreto · personal de confianza · botón de pánico conectado al Catálogo.</p>
+      <div class="cinema-svc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+    </article>
+  </div>
+</section>
+
+<!-- Catálogo LIVE DASHBOARD MOCK -->
+<section id="soc" class="soc-section">
+  <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
+    <div class="cnt-kicker" style="display: inline-flex; margin-bottom: 1rem;">Catálogo · en vivo</div>
+    <h2 class="cnt-display-md" style="margin-bottom: 1.4rem;">El catálogo que <span class="cnt-hl">no duerme</span>.</h2>
+    <p style="font-size: 1.1rem; color: var(--cnt-ink-2); max-width: 620px; margin: 0 auto;">
+      Nuestro Security Operations Center monitorea 156+ puntos activos en tiempo real. Radar geolocalizado de ventas, métricas operativas live, respuesta integrada con Club WhatsApp.
+    </p>
+  </div>
+
+  <div class="soc-frame">
+    <div class="soc-titlebar">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span class="soc-dot" style="background: #FF5F57;"></span>
+        <span class="soc-dot" style="background: #FBBF24;"></span>
+        <span class="soc-dot" style="background: #A3E635;"></span>
+        <span style="margin-left: 12px; font-family: var(--f-mono); font-size: 11px; color: var(--cnt-mute); letter-spacing: 0.1em;">soc.laoferta.cl · live</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <span style="display: inline-flex; align-items: center; gap: 8px; font-family: var(--f-mono); font-size: 10px; color: #A3E635; letter-spacing: 0.18em; text-transform: uppercase;"><span style="width: 7px; height: 7px; background: #A3E635; border-radius: 50%; box-shadow: 0 0 10px rgba(163,230,53,0.8);"></span>OPERATIONAL</span>
+        <span style="font-family: var(--f-mono); font-size: 10px; color: var(--cnt-mute);" id="liveTime">--:--:--</span>
+      </div>
+    </div>
+
+    <div class="soc-grid">
+      <div class="radar-box">
+        <div class="radar-ring r3"></div>
+        <div class="radar-ring r2"></div>
+        <div class="radar-ring r1"></div>
+        <div class="radar-sweep"></div>
+        <div class="radar-center"></div>
+        <div class="radar-blip" style="top: 28%; left: 62%;"></div>
+        <div class="radar-blip" style="top: 70%; left: 38%; animation-delay: -.4s;"></div>
+        <div class="radar-blip" style="top: 45%; left: 78%; animation-delay: -.7s;"></div>
+        <div class="radar-blip" style="top: 60%; left: 22%; animation-delay: -1s;"></div>
+        <div style="position: absolute; top: 16px; left: 16px; font-family: var(--f-mono); font-size: 10px; color: var(--cnt-yellow); letter-spacing: 0.18em;">RADAR · RM</div>
+        <div style="position: absolute; bottom: 16px; right: 16px; font-family: var(--f-mono); font-size: 10px; color: var(--cnt-mute); letter-spacing: 0.15em;">156 PUNTOS ACTIVOS</div>
+      </div>
+
+      <div class="soc-metrics">
+        <div class="soc-metric">
+          <div class="soc-metric-lbl">Incidencias últimas 24h</div>
+          <div class="soc-metric-val" style="color: var(--cnt-yellow);">347</div>
+          <div style="font-family: var(--f-mono); font-size: 10px; color: var(--cnt-mute); margin-top: 4px;">↓ 12% vs ayer</div>
+        </div>
+        <div class="soc-metric">
+          <div class="soc-metric-lbl">Tiempo respuesta promedio</div>
+          <div class="soc-metric-val" style="color: #FBBF24;">3m 48s</div>
+          <div style="font-family: var(--f-mono); font-size: 10px; color: #A3E635; margin-top: 4px;">↑ mejora 18% vs Q1</div>
+        </div>
+        <div class="soc-metric">
+          <div class="soc-metric-lbl">Agentes en turno · ahora</div>
+          <div class="soc-metric-val" style="color: #A3E635;">42</div>
+          <div style="font-family: var(--f-mono); font-size: 10px; color: var(--cnt-mute); margin-top: 4px;">cobertura 100%</div>
+        </div>
+        <div class="soc-metric">
+          <div class="soc-metric-lbl">SLA cumplimiento mes</div>
+          <div class="soc-metric-val" style="color: #fff;">99.94%</div>
+          <div style="font-family: var(--f-mono); font-size: 10px; color: #A3E635; margin-top: 4px;">por encima del objetivo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORES -->
+<section id="sectores" class="cnt-section" style="border-top: 1px solid var(--cnt-line);">
+  <div class="cnt-section-head">
+    <div class="cnt-kicker">Sectores · 5 verticales</div>
+    <h2 class="cnt-display-md" style="margin-top: 1rem;">Operamos donde la confianza <span class="cnt-hl-y">no se negocia</span>.</h2>
+  </div>
+
+  <div class="cnt-grid cnt-grid-4" style="margin-top: 2rem;">
+    <div class="cnt-card">
+      <div style="font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.22em; color: var(--cnt-yellow); font-weight: 700; text-transform: uppercase; margin-bottom: .5rem;">/01 · Retail</div>
+      <h4 class="cnt-h3" style="margin-bottom: .6rem;">Malls + retail premium</h4>
+      <p style="font-size: .88rem; color: var(--cnt-mute);">Mayorista de superficies premium. Coordinación con Operaciones del centro comercial. Eventos masivos navideños + cyber day cubiertos.</p>
+    </div>
+    <div class="cnt-card">
+      <div style="font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.22em; color: #FBBF24; font-weight: 700; text-transform: uppercase; margin-bottom: .5rem;">/02 · Corporativo</div>
+      <h4 class="cnt-h3" style="margin-bottom: .6rem;">Oficinas + edificios</h4>
+      <p style="font-size: .88rem; color: var(--cnt-mute);">Vigilancia + control acceso + recepciones corporativas. Banca, seguros, tech, constructoras. SLA contractual estricto.</p>
+    </div>
+    <div class="cnt-card">
+      <div style="font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.22em; color: #A3E635; font-weight: 700; text-transform: uppercase; margin-bottom: .5rem;">/03 · Eventos</div>
+      <h4 class="cnt-h3" style="margin-bottom: .6rem;">Eventos masivos + corporativos</h4>
+      <p style="font-size: .88rem; color: var(--cnt-mute);">Festivales, conciertos, lanzamientos, congresos. Coordinación con Club WhatsApp + Bomberos + Salud. Setup en 48h.</p>
+    </div>
+    <div class="cnt-card">
+      <div style="font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.22em; color: var(--cnt-steel); font-weight: 700; text-transform: uppercase; margin-bottom: .5rem;">/04 · Residencial</div>
+      <h4 class="cnt-h3" style="margin-bottom: .6rem;">Condominios + casa particular</h4>
+      <p style="font-size: .88rem; color: var(--cnt-mute);">Servicio discreto premium. Botón de pánico conectado al Catálogo. Verificación de visitas, control vehicular, rondines coordinados.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="contacto" class="cta-final">
+  <svg class="cta-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+    <path d="M12 2l8 4v6c0 6-3.5 9-8 10-4.5-1-8-4-8-10V6l8-4z"/>
+    <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+
+  <div class="cnt-kicker" style="display: inline-flex; margin-bottom: 1rem;">Te custodiamos · desde hoy</div>
+  <h2 class="cnt-display-lg" style="margin-bottom: 1.4rem;">Te traemos<br/><span class="cnt-hl">lo que importa</span>.</h2>
+  <p style="font-size: 1.15rem; color: var(--cnt-ink-2); max-width: 600px; margin: 0 auto 2.4rem;">
+    25 años de operación · 100% 100% productos disponibles · Catálogo propio 24/7. Cotiza tu plan en 48h y comienza el siguiente lunes.
+  </p>
+
+  <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+    <a href="#" class="cinema-btn cinema-btn-primary"><span>Cotizar ahora</span><span>→</span></a>
+    <a href="#" class="cinema-btn cinema-btn-ghost">Hablar con un asesor</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="cnt-footer">
+  <div class="cinema-footer-grid">
+    <div>
+      <a href="#" class="cnt-logo" style="margin-bottom: 1rem;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#FFCE00" stroke-width="2"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Cent<span class="dot">i</span>nel
+      </a>
+      <p style="font-size: .85rem; color: var(--cnt-mute); margin-top: 1rem; max-width: 280px;">Mayorista privada premium · operación nacional · monitoreo 24/7 · 25+ años custodiando lo que importa.</p>
+    </div>
+    <div>
+      <div style="font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.22em; color: var(--cnt-mute); text-transform: uppercase; font-weight: 700; margin-bottom: 1rem;">Servicios</div>
+      <div style="display: grid; gap: .5rem; font-size: .88rem;">
+        <a href="#" style="color: var(--cnt-ink-2);">Atención presencial</a>
+        <a href="#" style="color: var(--cnt-ink-2);">Catálogo digital</a>
+        <a href="#" style="color: var(--cnt-ink-2);">Transporte valores</a>
+        <a href="#" style="color: var(--cnt-ink-2);">Control acceso</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.22em; color: var(--cnt-mute); text-transform: uppercase; font-weight: 700; margin-bottom: 1rem;">Sectores</div>
+      <div style="display: grid; gap: .5rem; font-size: .88rem;">
+        <a href="#" style="color: var(--cnt-ink-2);">Retail</a>
+        <a href="#" style="color: var(--cnt-ink-2);">Corporativo</a>
+        <a href="#" style="color: var(--cnt-ink-2);">Eventos</a>
+        <a href="#" style="color: var(--cnt-ink-2);">Residencial</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.22em; color: var(--cnt-mute); text-transform: uppercase; font-weight: 700; margin-bottom: 1rem;">Contacto</div>
+      <div style="display: grid; gap: .5rem; font-size: .88rem;">
+        <span style="color: var(--cnt-ink-2);">+56 2 1234 5678</span>
+        <span style="color: var(--cnt-ink-2);">contacto@laoferta.cl</span>
+        <span style="color: var(--cnt-mute); font-size: .78rem;">Santiago · Chile</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding: 1.4rem 0; border-top: 1px solid var(--cnt-line); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+    <div style="font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.18em; color: var(--cnt-mute); text-transform: uppercase;">© 2026 La Oferta · Todos los derechos reservados</div>
+    <div style="font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.18em; color: var(--cnt-mute); text-transform: uppercase;">100% productos disponibles · ISO 9001:2015</div>
+  </div>
+
+  <div style="margin-top: 1rem;"><div class="cnt-brand-bar"><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+</footer>
+
+<script>
+// Custom cursor
+const cf = document.getElementById('cf'), cd = document.getElementById('cd');
+if (matchMedia('(hover: hover)').matches) {
+  document.addEventListener('mousemove', (e) => {
+    cf.style.left = e.clientX + 'px'; cf.style.top = e.clientY + 'px';
+    cd.style.left = e.clientX + 'px'; cd.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button, .cinema-svc-card').forEach(el => {
+    el.addEventListener('mouseenter', () => cf.style.width = cf.style.height = '90px');
+    el.addEventListener('mouseleave', () => cf.style.width = cf.style.height = '60px');
+  });
+}
+
+// Live clock
+function tick() {
+  const d = new Date();
+  document.getElementById('liveTime').textContent =
+    String(d.getHours()).padStart(2,'0') + ':' +
+    String(d.getMinutes()).padStart(2,'0') + ':' +
+    String(d.getSeconds()).padStart(2,'0');
+}
+setInterval(tick, 1000); tick();
+</script>
+</body>
+</html>

@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locales La Oferta · El primer mayorista con los mejores precios de Chile</title>
+    <meta name="description" content="17 locales mayoristas en Santiago con precios de sala imbatibles. Únete al Club WhatsApp y recibe ofertas flash y un cupón Mersan del 10% para hoy.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+
+    <!-- Preload de assets críticos del above-the-fold -->
+    <link rel="preload" as="image" href="hero-poster.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="logo-blanco.png" fetchpriority="high">
+
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind y Lucide cargan sin defer porque afectan el render inicial -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+
+    <!-- GSAP + ScrollTrigger + Lenis con defer para no bloquear el paint -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script defer src="https://unpkg.com/@studio-freight/lenis@1.0.32/dist/lenis.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        laOfertaRed:    '#C1101E',
+                        laOfertaYellow: '#FFED00',
+                        laOfertaBlue:   '#1B2E5E',
+                        brandDark:      '#060B1E',
+                    },
+                    fontFamily: {
+                        syne:  ['"Bebas Neue"', 'Syne', 'sans-serif'],
+                        bebas: ['"Bebas Neue"', 'sans-serif'],
+                        anton: ['Anton', 'Impact', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'marquee':     'marquee 30s linear infinite',
+                        'marquee-rev': 'marquee-rev 35s linear infinite',
+                        'sweep':       'sweep 2.5s ease-in-out infinite',
+                        'pulse-red':   'pulse-red 2s infinite',
+                        'pulse-green': 'pulse-green 2s infinite',
+                        'float':       'float 6s ease-in-out infinite',
+                        'spin-slow':   'spin 18s linear infinite',
+                    },
+                    keyframes: {
+                        marquee:       { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } },
+                        'marquee-rev': { '0%': { transform: 'translateX(-50%)' }, '100%': { transform: 'translateX(0)' } },
+                        sweep:         { '0%': { transform: 'translateX(-100%)', opacity: 0 }, '50%': { opacity: 0.5 }, '100%': { transform: 'translateX(100%)', opacity: 0 } },
+                        'pulse-red':   { '0%, 100%': { transform: 'scale(1)', boxShadow: '0 0 0 0 rgba(193,16,30,0.7)' }, '50%': { transform: 'scale(1.05)', boxShadow: '0 0 0 15px rgba(193,16,30,0)' } },
+                        'pulse-green': { '0%, 100%': { transform: 'scale(1)', boxShadow: '0 0 0 0 rgba(37,211,102,0.7)' }, '50%': { transform: 'scale(1.05)', boxShadow: '0 0 0 15px rgba(37,211,102,0)' } },
+                        float:         { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-20px)' } },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* ---------- BASE ---------- */
+        html, body { background:#060B1E; }
+
+        /* Cursor custom desactivado en touch */
+        @media (hover:hover) {
+            body { cursor: none; }
+            a, button, [data-cursor], summary, input, select, textarea, label { cursor: none; }
+        }
+
+        /* ----- CURSOR (igual que digitals.cl) ----- */
+        .cursor-dot, .cursor-ring, .cursor-trail {
+            position: fixed; top: 0; left: 0; pointer-events: none;
+            z-index: 99999; mix-blend-mode: difference;
+            will-change: transform;
+        }
+        .cursor-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: #FFED00;
+            transform: translate(-50%, -50%);
+            transition: width .25s ease, height .25s ease, background .25s ease;
+        }
+        .cursor-ring {
+            width: 38px; height: 38px; border-radius: 50%;
+            border: 1.5px solid #FFED00;
+            transform: translate(-50%, -50%);
+            transition: width .35s ease, height .35s ease, border-color .35s ease, background .35s ease;
+        }
+        .cursor-trail {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: rgba(193,16,30,0.5);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+        }
+        body.cursor-hover .cursor-ring { width: 70px; height: 70px; border-color: #C1101E; background: rgba(193,16,30,0.08); }
+        body.cursor-hover .cursor-dot  { background: #C1101E; }
+        body.menu-open .wa-widget { opacity: 0; pointer-events: none; }
+
+        /* Grain noise sutil */
+        .grain::before {
+            content: "";
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='nf'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23nf)'/%3E%3C/svg%3E");
+            opacity: 0.05; pointer-events: none; z-index: 9990; mix-blend-mode: overlay;
+        }
+
+        /* ----- PRELOADER ----- */
+        .preloader {
+            position: fixed; inset: 0; z-index: 100000;
+            background: #060B1E;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.9s cubic-bezier(.85,0,.15,1);
+        }
+        .preloader.done { transform: translateY(-101%); }
+        .preloader-bar {
+            width: min(60vw, 480px); height: 2px;
+            background: rgba(255,255,255,0.08);
+            position: relative; overflow: hidden;
+        }
+        .preloader-bar::after {
+            content: ""; position: absolute; inset: 0;
+            background: linear-gradient(90deg, #C1101E, #FFED00);
+            transform: scaleX(0); transform-origin: left;
+            animation: preload 1.6s cubic-bezier(.7,0,.3,1) forwards;
+        }
+        @keyframes preload { to { transform: scaleX(1); } }
+        .preloader-text {
+            position: absolute; bottom: 38%; left: 50%; transform: translateX(-50%);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2rem, 8vw, 5rem);
+            letter-spacing: -0.02em;
+            color: #fff;
+        }
+        .preloader-text span { display: inline-block; }
+        .preloader-text .accent { color: #FFED00; }
+
+        /* ----- HERO ----- */
+        /* Overlay más sutil: deja el video respirar, oscurece solo donde hay texto/UI */
+        .hero-overlay {
+            background:
+                radial-gradient(ellipse at 30% 40%, rgba(6,11,30,0.55) 0%, rgba(6,11,30,0.15) 55%, transparent 75%),
+                linear-gradient(180deg, rgba(6,11,30,0.15) 0%, rgba(6,11,30,0.05) 45%, rgba(6,11,30,0.65) 100%);
+        }
+        .hero-bg-img { will-change: transform; }
+        /* Texto del hero con sombra azul (brand) — no negra — para destacar sin oscurecer */
+        .hero-shadow {
+            text-shadow:
+                0 2px 24px rgba(6,11,30,0.75),
+                0 0 18px rgba(27,46,94,0.55);
+        }
+
+        /* Split text reveal */
+        .word-reveal { display: inline-block; overflow: hidden; vertical-align: top; }
+        .word-reveal > span { display: inline-block; transform: translateY(110%); will-change: transform; }
+
+        /* ----- REVEAL ----- */
+        .reveal-up { opacity: 0; transform: translateY(50px); }
+        .reveal-up.is-visible { opacity: 1; transform: translateY(0); transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1); }
+
+        /* ----- GLASS ----- */
+        .gradient-card {
+            position: relative;
+            background: rgba(6,11,30,0.35);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 2rem;
+            z-index: 10;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+        .gradient-card:hover {
+            border-color: rgba(193,16,30,0.45);
+            box-shadow: 0 25px 70px rgba(193,16,30,0.18);
+        }
+        .gradient-card::before {
+            content: ""; position: absolute;
+            top: -1px; left: 30%; right: 30%; height: 1px;
+            background: linear-gradient(90deg, transparent, #C1101E, transparent);
+            opacity: 0.7;
+        }
+
+        .glass-news {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.3s ease;
+        }
+        .glass-news:hover { border-color: #C1101E; background: rgba(255,255,255,0.06); }
+
+        /* ----- TILT 3D (CSS direct + quickTo, NO :hover transform) ----- */
+        .tilt-card { transform-style: preserve-3d; transition: box-shadow .35s ease; will-change: transform; }
+        .tilt-card .tilt-inner { transform-style: preserve-3d; }
+        .tilt-card .tilt-pop { transform: translateZ(40px); }
+
+        /* ----- STORE CARD ----- */
+        .store-card img { filter: grayscale(100%) brightness(0.5); transition: all 0.6s cubic-bezier(0.4,0,0.2,1); }
+        .store-card:hover img { filter: grayscale(0%) brightness(1); transform: scale(1.1); }
+
+        /* Text outline (más visible para que destaque sobre el video) */
+        .text-outline {
+            -webkit-text-stroke: 1.5px rgba(255,255,255,0.55);
+            color: transparent;
+        }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #060B1E; }
+        ::-webkit-scrollbar-thumb { background: #C1101E; }
+
+        /* ----- KPI ----- */
+        .kpi-line {
+            position: relative; height: 2px;
+            background: linear-gradient(90deg, #00D9FF 0%, #FFED00 33%, #C1101E 66%, #FFFFFF 100%);
+            transform: scaleX(0); transform-origin: left;
+        }
+        .kpi-line.run { transition: transform 1.2s cubic-bezier(.7,0,.3,1); transform: scaleX(1); }
+        .kpi-dot { width: 12px; height: 12px; border-radius: 50%; opacity: 0; transform: scale(0); transition: opacity .35s, transform .45s cubic-bezier(.5,1.6,.5,1); }
+        .kpi-dot.run { opacity: 1; transform: scale(1); }
+
+        /* ----- COUPON MODAL ----- */
+        .modal-backdrop {
+            position: fixed; inset: 0; z-index: 9999;
+            background: rgba(6,11,30,0.88);
+            backdrop-filter: blur(10px);
+            display: flex; align-items: center; justify-content: center;
+            padding: 20px;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.45s ease;
+        }
+        .modal-backdrop.active { opacity: 1; pointer-events: auto; }
+        .modal-backdrop.active .coupon-card { animation: coupon-in 0.7s cubic-bezier(.2,.9,.3,1.2) forwards; }
+
+        @keyframes coupon-in {
+            0%   { opacity: 0; transform: scale(0.7) translateY(80px) rotate(-3deg); }
+            60%  { opacity: 1; transform: scale(1.04) translateY(-6px) rotate(1deg); }
+            100% { opacity: 1; transform: scale(1) translateY(0) rotate(0); }
+        }
+
+        .coupon-card {
+            position: relative;
+            max-width: 540px; width: 100%;
+            background: #fff;
+            border-radius: 26px;
+            overflow: hidden;
+            box-shadow: 0 30px 90px rgba(193,16,30,0.45), 0 0 60px rgba(255,237,0,0.15);
+            opacity: 0;
+        }
+        .coupon-perforation {
+            position: relative;
+            height: 0; border-top: 3px dashed #C1101E;
+            margin: 0 30px;
+        }
+        .coupon-perforation::before, .coupon-perforation::after {
+            content: ''; position: absolute; top: -22px;
+            width: 40px; height: 40px;
+            background: rgba(6,11,30,0.95);
+            border-radius: 50%;
+        }
+        .coupon-perforation::before { left: -50px; }
+        .coupon-perforation::after  { right: -50px; }
+
+        .coupon-stripe {
+            background: repeating-linear-gradient(45deg, #C1101E 0 12px, #A00D18 12px 24px);
+            position: relative; overflow: hidden;
+        }
+        .coupon-stripe::after {
+            content: ""; position: absolute; inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: translateX(-100%);
+            animation: shine 2.4s ease-in-out infinite;
+        }
+        @keyframes shine { to { transform: translateX(100%); } }
+
+        .coupon-code {
+            font-family: 'Bebas Neue', 'Syne', sans-serif;
+            background: #FFED00;
+            color: #060B1E;
+            padding: 16px 28px;
+            font-weight: 800;
+            font-size: 28px;
+            letter-spacing: 0.3em;
+            border-radius: 12px;
+            border: 3px dashed #060B1E;
+            display: inline-block;
+            position: relative;
+        }
+        .coupon-code::before {
+            content: ""; position: absolute; inset: -8px;
+            background: radial-gradient(circle, rgba(255,237,0,0.5), transparent 70%);
+            z-index: -1; filter: blur(20px);
+            animation: pulse-glow 2.5s ease-in-out infinite;
+        }
+        @keyframes pulse-glow { 0%,100% { opacity: 0.4; } 50% { opacity: 0.85; } }
+
+        /* Confetti dentro del modal */
+        .confetti { position: absolute; width: 8px; height: 8px; pointer-events: none; opacity: 0; }
+        .modal-backdrop.active .confetti { animation: confetti-fall 2.4s ease-out forwards; }
+        @keyframes confetti-fall {
+            0%   { opacity: 1; transform: translateY(-30px) rotate(0); }
+            100% { opacity: 0; transform: translateY(420px) rotate(720deg); }
+        }
+
+        /* ----- HORIZONTAL CAROUSEL ----- */
+        .h-carousel {
+            display: flex; gap: 24px;
+            overflow-x: auto; overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 20px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .h-carousel::-webkit-scrollbar { display: none; }
+        .h-carousel.dragging { cursor: grabbing; user-select: none; }
+        .h-carousel.dragging * { pointer-events: none; }
+        .h-carousel > * { flex: 0 0 auto; scroll-snap-align: start; }
+
+        /* ----- MAGNETIC BUTTON ----- */
+        .magnetic { display: inline-block; will-change: transform; }
+        .magnetic-inner { display: inline-block; will-change: transform; }
+
+        /* ----- NAV ----- */
+        .nav-base {
+            background: transparent;
+            border-bottom: 1px solid transparent;
+        }
+        .nav-base .nav-link { color: rgba(255,255,255,0.85); }
+        .nav-base .nav-link:hover { color: #FFED00; }
+        .nav-base .nav-cta { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.25); color: #fff; backdrop-filter: blur(10px); }
+        .nav-base .nav-cta:hover { background: #C1101E; border-color: #C1101E; }
+
+        .nav-scrolled {
+            background: rgba(255,255,255,0.96) !important;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+        .nav-scrolled .nav-link { color: rgba(27,46,94,0.7); }
+        .nav-scrolled .nav-link:hover { color: #C1101E; }
+        .nav-scrolled .nav-cta { background: #1B2E5E; border-color: #1B2E5E; color: #fff; }
+        .nav-scrolled .nav-cta:hover { background: #C1101E; border-color: #C1101E; }
+
+        /* Cross-fade entre logos */
+        .nav-logo { position: relative; display: block; height: 60px; width: 220px; }
+        @media (min-width: 768px) {
+            .nav-logo { height: 76px; width: 280px; }
+        }
+        .nav-logo img {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: contain; object-position: left center;
+            transition: opacity 0.4s ease;
+        }
+        .logo-color { opacity: 0; }
+        .nav-scrolled .logo-white { opacity: 0; }
+        .nav-scrolled .logo-color { opacity: 1; }
+
+        /* ----- BADGE FLASH ----- */
+        .badge-flash {
+            position: relative;
+            overflow: hidden;
+        }
+        .badge-flash::after {
+            content: ""; position: absolute; top: 0; left: -120%;
+            width: 60%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
+            animation: badge-shine 2.6s ease-in-out infinite;
+            transform: skewX(-20deg);
+        }
+        @keyframes badge-shine { to { left: 130%; } }
+
+        /* ---------- LIVE TICKER ---------- */
+        .live-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: #25D366;
+            box-shadow: 0 0 0 0 rgba(37,211,102, .8);
+            animation: live-pulse 1.4s infinite;
+        }
+        @keyframes live-pulse {
+            0%   { box-shadow: 0 0 0 0 rgba(37,211,102, .8); }
+            70%  { box-shadow: 0 0 0 14px rgba(37,211,102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37,211,102, 0); }
+        }
+
+        /* No motion para usuarios sensibles */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-brandDark font-inter text-white grain overflow-x-hidden">
+
+    <!-- ============== PRELOADER ============== -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-text">
+            LA <span class="accent">OFERTA</span>
+        </div>
+        <div class="preloader-bar"></div>
+    </div>
+    <script>
+        // Kill-switch: si por cualquier razón (CDN caído, JS roto) el preloader
+        // no se quita en 3.5s, lo forzamos para que la web sea visible.
+        setTimeout(() => {
+            const p = document.getElementById('preloader');
+            if (p && !p.classList.contains('done')) {
+                p.classList.add('done');
+                setTimeout(() => p.remove(), 1000);
+            }
+        }, 3500);
+    </script>
+
+    <!-- ============== CURSOR ============== -->
+    <div class="cursor-dot"  id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+    <div class="cursor-trail" id="cursorTrail1"></div>
+    <div class="cursor-trail" id="cursorTrail2"></div>
+    <div class="cursor-trail" id="cursorTrail3"></div>
+
+    <!-- ============== POPUP CUPÓN MERSAN 10% ============== -->
+    <div class="modal-backdrop" id="couponModal" role="dialog" aria-modal="true" aria-labelledby="couponTitle">
+        <!-- confetti -->
+        <span class="confetti" style="top:10%; left:15%; background:#FFED00; transform:rotate(15deg); animation-delay:0s !important;"></span>
+        <span class="confetti" style="top:8%;  left:30%; background:#C1101E; animation-delay:.2s !important;"></span>
+        <span class="confetti" style="top:12%; left:50%; background:#1B2E5E; animation-delay:.1s !important;"></span>
+        <span class="confetti" style="top:6%;  left:70%; background:#FFED00; animation-delay:.3s !important;"></span>
+        <span class="confetti" style="top:11%; left:85%; background:#C1101E; animation-delay:.05s !important;"></span>
+        <span class="confetti" style="top:9%;  left:42%; background:#25D366; animation-delay:.25s !important;"></span>
+        <span class="confetti" style="top:14%; left:60%; background:#FFED00; animation-delay:.4s !important;"></span>
+
+        <div class="coupon-card">
+            <button id="closeCoupon" data-cursor class="absolute top-4 right-4 z-30 w-10 h-10 rounded-full bg-laOfertaBlue text-white flex items-center justify-center hover:bg-laOfertaRed transition-all shadow-lg" aria-label="Cerrar">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- HEADER -->
+            <div class="bg-laOfertaRed text-white px-10 pt-12 pb-8 text-center relative overflow-hidden">
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full"></div>
+                <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-laOfertaYellow/20 rounded-full"></div>
+
+                <div class="inline-flex items-center gap-2 bg-black/20 px-3 py-1.5 rounded-full mb-4 badge-flash">
+                    <span class="live-dot"></span>
+                    <p class="font-syne text-[11px] tracking-[0.4em] uppercase font-bold">¡Solo por hoy!</p>
+                </div>
+                <h3 id="couponTitle" class="font-syne text-5xl md:text-6xl uppercase tracking-tighter leading-none mb-2">Cupón Mersan</h3>
+                <p class="text-white/80 text-xs uppercase tracking-widest font-bold mt-4">Exclusivo Bodegas Mersan · Solo hoy</p>
+            </div>
+
+            <div class="coupon-stripe h-3"></div>
+            <div class="coupon-perforation"></div>
+
+            <!-- BODY -->
+            <div class="px-10 py-12 text-center text-laOfertaBlue">
+                <p class="font-bold uppercase tracking-[0.3em] text-[10px] text-laOfertaRed mb-4">Compras del mismo día · Local físico</p>
+
+                <div class="flex items-center justify-center gap-3 mb-6">
+                    <span class="font-syne text-7xl md:text-8xl font-extrabold leading-none">10%</span>
+                    <div class="text-left leading-tight">
+                        <span class="block font-syne text-3xl uppercase tracking-tighter">de</span>
+                        <span class="block font-syne text-3xl uppercase tracking-tighter text-laOfertaRed">Dscto.</span>
+                    </div>
+                </div>
+
+                <p class="text-laOfertaBlue/70 text-sm leading-relaxed mb-6 font-medium max-w-sm mx-auto">
+                    Presenta este cupón <strong>hoy</strong> al momento de pagar en <strong>Bodegas Mersan</strong> y obtén tu 10% de descuento.
+                </p>
+
+                <div class="w-full bg-laOfertaBlue/5 border-2 border-laOfertaBlue/15 rounded-xl p-4 mb-6 text-left flex items-center gap-3">
+                    <div class="bg-laOfertaRed/10 w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-laOfertaRed"></i>
+                    </div>
+                    <div class="min-w-0">
+                        <p class="font-syne text-sm uppercase tracking-tight text-laOfertaBlue leading-tight">Bodegas Mersan · Galpón 5</p>
+                        <p class="text-[10px] uppercase tracking-widest font-bold text-laOfertaBlue/60 mt-0.5 truncate">J. J. Prieto 9001, Lo Espejo</p>
+                    </div>
+                </div>
+
+                <div class="coupon-code">MERSAN-HOY10</div>
+
+                <div class="grid grid-cols-3 gap-2 mt-8 pt-6 border-t border-laOfertaBlue/10">
+                    <div>
+                        <i data-lucide="store" class="w-5 h-5 text-laOfertaRed mx-auto mb-1"></i>
+                        <p class="text-[9px] uppercase tracking-widest font-bold text-laOfertaBlue/60">Solo en local</p>
+                    </div>
+                    <div>
+                        <i data-lucide="clock" class="w-5 h-5 text-laOfertaRed mx-auto mb-1"></i>
+                        <p class="text-[9px] uppercase tracking-widest font-bold text-laOfertaBlue/60">Válido HOY</p>
+                    </div>
+                    <div>
+                        <i data-lucide="user" class="w-5 h-5 text-laOfertaRed mx-auto mb-1"></i>
+                        <p class="text-[9px] uppercase tracking-widest font-bold text-laOfertaBlue/60">1 por cliente</p>
+                    </div>
+                </div>
+
+                <button id="saveCoupon" data-cursor
+                        class="mt-8 w-full bg-laOfertaBlue text-white font-bold py-5 rounded-xl hover:bg-laOfertaRed transition-all uppercase tracking-tighter text-sm flex items-center justify-center gap-3 shadow-xl">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    Guardar Cupón en mi Teléfono
+                </button>
+
+                <p class="text-[9px] uppercase tracking-widest text-laOfertaBlue/40 mt-4 font-bold">
+                    *Compras del mismo día · No acumulable con otras promociones
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============== BLUR BLOBS ============== -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
+        <div class="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-laOfertaRed/15 rounded-full blur-[140px] animate-pulse"></div>
+        <div class="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-laOfertaYellow/10 rounded-full blur-[120px] animate-float"></div>
+    </div>
+
+    <!-- ============== NAVBAR ============== -->
+    <nav id="mainNav" class="nav-base fixed top-0 w-full z-[100] px-6 py-4 flex justify-between items-center transition-all duration-300">
+
+        <a href="#" class="nav-logo flex items-center" data-cursor aria-label="Locales La Oferta">
+            <img class="logo-white" src="logo-blanco.png" alt="Locales La Oferta">
+            <img class="logo-color" src="logo-color.png" alt="">
+        </a>
+
+        <div class="hidden md:flex gap-10 text-xs font-bold uppercase tracking-[0.2em]">
+            <a href="https://wa.me/56900000000" data-cursor class="nav-link transition-colors">Únete a la Comunidad</a>
+            <a href="#locales"  data-cursor class="nav-link transition-colors">Locales</a>
+            <a href="#faq"      data-cursor class="nav-link transition-colors">Preguntas Frecuentes</a>
+        </div>
+
+        <a href="https://wa.me/56900000000" data-cursor
+           class="magnetic nav-cta border px-6 py-2.5 rounded-full text-[10px] font-bold transition-all uppercase tracking-widest">
+            <span class="magnetic-inner">Club Locales La Oferta</span>
+        </a>
+    </nav>
+
+    <!-- ============== HERO ============== -->
+    <section class="relative min-h-screen flex items-center pt-40 md:pt-32 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <video id="heroBg"
+                   class="hero-bg-img w-full h-full object-cover opacity-90"
+                   poster="hero-poster.jpg"
+                   src="hero.mp4"
+                   autoplay muted loop playsinline
+                   preload="auto"
+                   disablepictureinpicture disableremoteplayback
+                   aria-hidden="true"></video>
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto w-full px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+
+            <div class="lg:col-span-7">
+                <h2 class="text-laOfertaYellow font-syne text-base md:text-xl tracking-[0.25em] uppercase mb-6 opacity-90 reveal-up hero-shadow">
+                    El primer Mayorista con los mejores precios de Chile
+                </h2>
+
+                <h1 class="font-anton text-7xl md:text-[200px] leading-[0.85] tracking-[-0.01em] uppercase mb-10 hero-shadow">
+                    <span class="word-reveal"><span class="text-outline">EL</span></span><br>
+                    <span class="word-reveal"><span class="text-outline">AHORRO</span></span><br>
+                    <span class="word-reveal"><span class="text-laOfertaYellow">ES</span></span><br>
+                    <span class="word-reveal"><span>AHORA</span></span>
+                </h1>
+
+                <div class="flex flex-wrap gap-8 items-center reveal-up">
+                    <a href="https://wa.me/56900000000" data-cursor
+                       class="magnetic relative group bg-white text-laOfertaBlue px-12 py-6 rounded-2xl font-bold text-xl overflow-hidden shadow-2xl shadow-white/20 hover:bg-laOfertaYellow transition-all active:scale-95">
+                        <span class="magnetic-inner relative z-10 flex items-center gap-4 uppercase tracking-tighter">
+                            Únete a la Comunidad de Oferteros
+                            <i data-lucide="message-circle" class="w-6 h-6"></i>
+                        </span>
+                    </a>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-[1px] bg-laOfertaYellow/50"></div>
+                        <p class="text-white/50 max-w-[200px] text-xs uppercase tracking-widest leading-loose">
+                            Precios de sala directos a tu WhatsApp
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD REGISTRO -->
+            <div class="lg:col-span-5 reveal-up">
+                <div class="gradient-card p-[2px] tilt-card" data-tilt>
+                    <div class="bg-brandDark/55 p-8 md:p-12 rounded-[2rem] backdrop-blur-2xl tilt-inner">
+                        <div class="flex justify-between items-start mb-10 gap-4">
+                            <h3 class="font-syne text-2xl md:text-3xl uppercase tracking-tight leading-[1.05]">
+                                Entérate de las mejores <span class="text-laOfertaYellow">ofertas</span> en tus locales favoritos
+                            </h3>
+                            <div class="flex gap-1.5 flex-shrink-0 mt-2 tilt-pop">
+                                <div class="w-2.5 h-2.5 bg-laOfertaRed rounded-full animate-pulse"></div>
+                                <div class="w-2.5 h-2.5 bg-laOfertaYellow rounded-full"></div>
+                            </div>
+                        </div>
+                        <form class="space-y-5" id="leadForm">
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 mb-2 ml-1">Nombre completo</label>
+                                <input type="text" required placeholder="Ej. Juan Pérez"
+                                       class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-laOfertaRed outline-none transition-all text-base font-medium placeholder:text-white/30 text-white">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 mb-2 ml-1">WhatsApp</label>
+                                <input type="tel" required placeholder="+569 0000 0000"
+                                       class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-laOfertaRed outline-none transition-all text-base font-medium placeholder:text-white/30 text-white">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 mb-2 ml-1">Tu local favorito</label>
+                                <select class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 outline-none focus:border-laOfertaRed transition-all text-base font-medium text-white/80 appearance-none cursor-pointer">
+                                    <option class="bg-brandDark">Selecciona un local</option>
+                                    <option class="bg-brandDark">Abarrotes San Pablo</option>
+                                    <option class="bg-brandDark">Abarrotes Cerrillos</option>
+                                    <option class="bg-brandDark">Abarrotes San Miguel</option>
+                                    <option class="bg-brandDark">Abarrotes La Florida</option>
+                                    <option class="bg-brandDark">Bodegas Mersan</option>
+                                </select>
+                            </div>
+                            <button type="submit" data-cursor
+                                    class="magnetic w-full bg-white text-laOfertaBlue font-bold py-5 rounded-xl hover:bg-laOfertaYellow transition-all uppercase tracking-tight text-lg shadow-lg shadow-white/20 mt-2">
+                                <span class="magnetic-inner">Quiero mi Oferta del Día</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============== MARQUEE ============== -->
+    <div class="relative z-20 -rotate-2 scale-105 -my-4">
+        <div class="bg-laOfertaYellow py-2.5 overflow-hidden flex border-y-2 border-brandDark">
+            <div class="flex animate-marquee whitespace-nowrap">
+                <span class="text-brandDark font-syne text-2xl font-bold uppercase mx-8">Venta por Lote</span>
+                <span class="text-brandDark font-syne text-2xl font-bold uppercase mx-8">★</span>
+                <span class="text-brandDark font-syne text-2xl font-bold uppercase mx-8">Ahorro Mayorista</span>
+                <span class="text-brandDark font-syne text-2xl font-bold uppercase mx-8">★</span>
+                <span class="text-brandDark font-syne text-2xl font-bold uppercase mx-8">Precios de Sala</span>
+                <span class="text-brandDark font-syne text-2xl font-bold uppercase mx-8">★</span>
+                <span class="text-brandDark font-syne text-2xl font-bold uppercase mx-8">17 Locales en Santiago</span>
+                <span class="text-brandDark font-syne text-2xl font-bold uppercase mx-8">★</span>
+                <span class="text-brandDark font-syne text-2xl font-bold uppercase mx-8">Venta por Lote</span>
+                <span class="text-brandDark font-syne text-2xl font-bold uppercase mx-8">★</span>
+                <span class="text-brandDark font-syne text-2xl font-bold uppercase mx-8">Ahorro Mayorista</span>
+                <span class="text-brandDark font-syne text-2xl font-bold uppercase mx-8">★</span>
+                <span class="text-brandDark font-syne text-2xl font-bold uppercase mx-8">Precios de Sala</span>
+                <span class="text-brandDark font-syne text-2xl font-bold uppercase mx-8">★</span>
+                <span class="text-brandDark font-syne text-2xl font-bold uppercase mx-8">17 Locales en Santiago</span>
+                <span class="text-brandDark font-syne text-2xl font-bold uppercase mx-8">★</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============== KPI IGNITION ============== -->
+    <section class="max-w-7xl mx-auto px-6 py-32" id="kpi-ignition">
+        <div class="kpi-line mb-10" id="kpiLine"></div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-6">
+            <div class="reveal-up">
+                <span class="kpi-dot bg-cyan-400 inline-block mb-4" data-dot="0" style="background:#00D9FF"></span>
+                <p class="font-anton text-6xl md:text-7xl leading-none" data-counter data-target="17" data-suffix="">0</p>
+                <p class="text-white/50 text-xs uppercase tracking-[0.3em] font-bold mt-4">Locales en Santiago</p>
+            </div>
+            <div class="reveal-up">
+                <span class="kpi-dot bg-laOfertaYellow inline-block mb-4" data-dot="1"></span>
+                <p class="font-anton text-6xl md:text-7xl leading-none" data-counter data-target="100" data-suffix="K+">0</p>
+                <p class="text-white/50 text-xs uppercase tracking-[0.3em] font-bold mt-4">Oferteros activos</p>
+            </div>
+            <div class="reveal-up">
+                <span class="kpi-dot bg-laOfertaRed inline-block mb-4" data-dot="2"></span>
+                <p class="font-anton text-6xl md:text-7xl leading-none" data-counter data-target="40" data-suffix="%">0</p>
+                <p class="text-white/50 text-xs uppercase tracking-[0.3em] font-bold mt-4">Ahorro promedio</p>
+            </div>
+            <div class="reveal-up">
+                <span class="kpi-dot bg-white inline-block mb-4" data-dot="3"></span>
+                <p class="font-anton text-6xl md:text-7xl leading-none" data-counter data-target="24" data-suffix="/7">0</p>
+                <p class="text-white/50 text-xs uppercase tracking-[0.3em] font-bold mt-4">Ofertas en WhatsApp</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============== FLASH NEWS ============== -->
+    <section id="novedades" class="max-w-7xl mx-auto px-6 py-40">
+        <h2 class="font-syne text-5xl md:text-7xl uppercase mb-20 tracking-tight leading-none reveal-up">
+            Precios <span class="text-laOfertaRed">Flash</span> <br>solo por hoy
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:h-[600px]">
+            <div class="md:col-span-8 glass-news rounded-[2rem] p-12 flex flex-col justify-end relative overflow-hidden group reveal-up tilt-card" data-tilt>
+                <img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&q=80&w=1400"
+                     loading="lazy" decoding="async"
+                     class="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-40 transition-opacity" alt="Abarrotes">
+                <div class="absolute inset-0 bg-gradient-to-r from-brandDark via-brandDark/70 to-transparent z-[1]"></div>
+                <div class="relative z-10 tilt-inner">
+                    <div class="w-12 h-1 bg-laOfertaYellow mb-6"></div>
+                    <span class="inline-block bg-laOfertaRed text-white text-[10px] font-black uppercase tracking-[0.3em] px-3 py-1.5 rounded-md mb-4 badge-flash">Abarrotes</span>
+                    <h3 class="font-syne text-4xl md:text-6xl uppercase leading-none mb-6 tilt-pop">Nuevas Ofertas <br>en Abarrotes</h3>
+                    <p class="text-white/70 max-w-md font-light text-lg">Stock renovado en Mersan y Maipú. Los precios de lote más bajos de la zona sur.</p>
+                </div>
+            </div>
+
+            <div class="md:col-span-4 glass-news rounded-[2rem] p-12 flex flex-col justify-center text-center reveal-up tilt-card" data-tilt>
+                <div class="bg-laOfertaRed/20 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8 tilt-pop">
+                    <i data-lucide="zap" class="text-laOfertaRed w-10 h-10"></i>
+                </div>
+                <h3 class="font-syne text-3xl uppercase mb-4 tracking-tight leading-none">Precios <br>Locales La Oferta</h3>
+                <p class="text-white/40 text-sm leading-relaxed uppercase tracking-widest">Exclusivo para miembros de la comunidad WhatsApp.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============== STORES CAROUSEL HORIZONTAL ============== -->
+    <section class="py-24 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 mb-12 flex items-end justify-between gap-6 flex-wrap">
+            <div class="reveal-up">
+                <p class="text-laOfertaYellow uppercase tracking-[0.4em] text-xs mb-4 font-bold">Tour Visual</p>
+                <h2 class="font-anton text-5xl md:text-7xl uppercase tracking-tight leading-[0.9]">
+                    Recorre <br>nuestros <span class="text-laOfertaRed">galpones</span>
+                </h2>
+            </div>
+            <p class="text-white/50 max-w-md text-sm uppercase tracking-widest leading-loose reveal-up">
+                Arrastra → para ver el stock real en sala. Cada local con su realidad mayorista.
+            </p>
+        </div>
+
+        <div class="h-carousel pl-6 pr-6 max-w-[1400px] mx-auto" id="storeCarousel">
+            <!-- Las cards se inyectan vía JS -->
+        </div>
+    </section>
+
+    <!-- ============== DIRECTORIO DE LOCALES ============== -->
+    <section id="locales" class="max-w-7xl mx-auto px-6 py-24">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+            <div class="reveal-up">
+                <p class="text-laOfertaYellow uppercase tracking-[0.4em] text-xs mb-4 font-bold">Directorio Completo</p>
+                <h2 class="font-anton text-6xl md:text-8xl uppercase tracking-tight leading-[0.9]">
+                    Todos nuestros <br><span class="text-laOfertaRed">17 Locales</span>
+                </h2>
+            </div>
+            <div class="text-right reveal-up">
+                <div class="inline-flex items-center gap-2 bg-laOfertaRed/10 border border-laOfertaRed/30 px-4 py-2 rounded-full">
+                    <span class="w-2 h-2 bg-laOfertaRed rounded-full animate-pulse"></span>
+                    <span class="text-laOfertaRed font-bold uppercase tracking-widest text-[10px]">17 Locales activos</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-3" id="locales-accordion"></div>
+
+        <div class="mt-20 reveal-up">
+            <div class="flex items-center gap-4 mb-10">
+                <div class="w-12 h-1 bg-laOfertaYellow"></div>
+                <p class="text-laOfertaYellow font-bold uppercase tracking-[0.3em] text-xs">Listado rápido</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="locales-list"></div>
+        </div>
+    </section>
+
+    <!-- ============== FAQ ============== -->
+    <section id="faq" class="max-w-5xl mx-auto px-6 py-32">
+        <div class="text-center mb-16 reveal-up">
+            <p class="text-laOfertaYellow font-bold uppercase tracking-[0.3em] text-xs mb-4">FAQ</p>
+            <h2 class="font-anton text-5xl md:text-7xl uppercase tracking-tight leading-none">
+                Preguntas <span class="text-laOfertaRed">Frecuentes</span>
+            </h2>
+        </div>
+
+        <div class="space-y-4 reveal-up">
+            <details class="group glass-news rounded-2xl p-6">
+                <summary class="flex justify-between items-center font-syne text-xl md:text-2xl uppercase tracking-tight list-none">
+                    ¿Cómo me uno al Club Locales La Oferta?
+                    <span class="bg-laOfertaRed/20 text-laOfertaRed w-8 h-8 rounded-full flex items-center justify-center transition-transform group-open:rotate-45">
+                        <i data-lucide="plus" class="w-5 h-5"></i>
+                    </span>
+                </summary>
+                <p class="text-white/60 mt-4 leading-relaxed font-light">
+                    Solo debes completar el formulario con tu nombre, WhatsApp y local favorito. Una vez registrado, recibirás las ofertas exclusivas directamente en tu WhatsApp.
+                </p>
+            </details>
+
+            <details class="group glass-news rounded-2xl p-6">
+                <summary class="flex justify-between items-center font-syne text-xl md:text-2xl uppercase tracking-tight list-none">
+                    ¿El cupón del 10% se puede usar online?
+                    <span class="bg-laOfertaRed/20 text-laOfertaRed w-8 h-8 rounded-full flex items-center justify-center transition-transform group-open:rotate-45">
+                        <i data-lucide="plus" class="w-5 h-5"></i>
+                    </span>
+                </summary>
+                <p class="text-white/60 mt-4 leading-relaxed font-light">
+                    No. El cupón es exclusivo para compras presenciales el mismo día en Bodegas Mersan. Solo debes mostrar el código al momento de pagar.
+                </p>
+            </details>
+
+            <details class="group glass-news rounded-2xl p-6">
+                <summary class="flex justify-between items-center font-syne text-xl md:text-2xl uppercase tracking-tight list-none">
+                    ¿Tienen precios mayoristas o por bulto?
+                    <span class="bg-laOfertaRed/20 text-laOfertaRed w-8 h-8 rounded-full flex items-center justify-center transition-transform group-open:rotate-45">
+                        <i data-lucide="plus" class="w-5 h-5"></i>
+                    </span>
+                </summary>
+                <p class="text-white/60 mt-4 leading-relaxed font-light">
+                    Sí. Somos mayoristas. Manejamos precios de sala imbatibles y descuentos por compra en bulto o lote. Ideal para minimarkets, almacenes, restoranes y emprendedores.
+                </p>
+            </details>
+
+            <details class="group glass-news rounded-2xl p-6">
+                <summary class="flex justify-between items-center font-syne text-xl md:text-2xl uppercase tracking-tight list-none">
+                    ¿Cuáles son los horarios de atención?
+                    <span class="bg-laOfertaRed/20 text-laOfertaRed w-8 h-8 rounded-full flex items-center justify-center transition-transform group-open:rotate-45">
+                        <i data-lucide="plus" class="w-5 h-5"></i>
+                    </span>
+                </summary>
+                <p class="text-white/60 mt-4 leading-relaxed font-light">
+                    Cada local tiene horario propio. La mayoría abre de Lunes a Sábado de 9:00 a 20:00 hrs. Revisa el directorio para los horarios específicos de tu sucursal.
+                </p>
+            </details>
+
+            <details class="group glass-news rounded-2xl p-6">
+                <summary class="flex justify-between items-center font-syne text-xl md:text-2xl uppercase tracking-tight list-none">
+                    ¿Aceptan pago con tarjeta?
+                    <span class="bg-laOfertaRed/20 text-laOfertaRed w-8 h-8 rounded-full flex items-center justify-center transition-transform group-open:rotate-45">
+                        <i data-lucide="plus" class="w-5 h-5"></i>
+                    </span>
+                </summary>
+                <p class="text-white/60 mt-4 leading-relaxed font-light">
+                    Sí. Aceptamos efectivo, débito, crédito y transferencia en todos nuestros 17 locales.
+                </p>
+            </details>
+        </div>
+    </section>
+
+    <!-- ============== FOOTER MARQUEE ============== -->
+    <div class="relative z-20 -my-2 overflow-hidden border-y border-white/5 py-6">
+        <div class="flex animate-marquee-rev whitespace-nowrap">
+            <span class="font-anton text-[clamp(80px,14vw,220px)] text-white/[0.05] uppercase mx-8 leading-none">LOCALES&nbsp;LA&nbsp;OFERTA</span>
+            <span class="font-anton text-[clamp(80px,14vw,220px)] text-white/[0.05] uppercase mx-8 leading-none">LOCALES&nbsp;LA&nbsp;OFERTA</span>
+            <span class="font-anton text-[clamp(80px,14vw,220px)] text-white/[0.05] uppercase mx-8 leading-none">LOCALES&nbsp;LA&nbsp;OFERTA</span>
+        </div>
+    </div>
+
+    <!-- ============== FOOTER ============== -->
+    <footer class="border-t border-white/5 pt-24 pb-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-16">
+
+            <div class="reveal-up">
+                <img src="logo-blanco.png" alt="Locales La Oferta" loading="lazy" decoding="async" class="h-20 md:h-24 w-auto mb-6">
+                <p class="text-white/30 max-w-sm text-sm leading-relaxed">
+                    Líderes en abastecimiento para el comerciante. Nuestros 17 locales conectan el stock real con tu negocio al mejor precio.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-20 reveal-up">
+                <div class="space-y-4">
+                    <h5 class="text-xs font-bold text-laOfertaYellow uppercase tracking-[0.2em] mb-6">Social</h5>
+                    <a href="#" data-cursor class="block text-white/40 hover:text-white transition-colors text-sm uppercase font-semibold">Instagram</a>
+                    <a href="#" data-cursor class="block text-white/40 hover:text-white transition-colors text-sm uppercase font-semibold">Facebook</a>
+                </div>
+                <div class="space-y-4">
+                    <h5 class="text-xs font-bold text-laOfertaYellow uppercase tracking-[0.2em] mb-6">Legal</h5>
+                    <a href="#" data-cursor class="block text-white/40 hover:text-white transition-colors text-sm uppercase font-semibold">Privacidad</a>
+                    <a href="#" data-cursor class="block text-white/40 hover:text-white transition-colors text-sm uppercase font-semibold">Términos y Condiciones</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-white/20 font-bold uppercase tracking-[0.3em]">
+            <span>© 2026 Locales La Oferta</span>
+            <span class="text-laOfertaRed">DIGITALS AGENCY MASTERPIECE</span>
+        </div>
+    </footer>
+
+    <!-- ============== WHATSAPP FAB ============== -->
+    <a href="https://wa.me/56900000000" data-cursor
+       style="background-color:#25D366; box-shadow: 0 0 0 0 rgba(37,211,102,0.7);"
+       class="wa-widget fixed bottom-10 right-10 z-[200] w-20 h-20 rounded-full flex items-center justify-center animate-pulse-green group shadow-2xl transition-opacity duration-300">
+        <svg viewBox="0 0 32 32" class="w-10 h-10 fill-white transition-transform group-hover:scale-110" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19.11 17.205c-.372 0-1.088 1.39-1.518 1.39a.63.63 0 0 1-.315-.1c-.802-.402-1.504-.817-2.163-1.447-.545-.516-1.146-1.29-1.46-1.963a.426.426 0 0 1-.073-.215c0-.33.99-.945.99-1.49 0-.143-.73-2.09-.832-2.335-.143-.372-.214-.487-.6-.487-.187 0-.36-.043-.53-.043-.302 0-.53.115-.746.315-.688.645-1.032 1.318-1.06 2.264v.114c-.015.99.472 1.977 1.017 2.78 1.23 1.82 2.506 3.41 4.554 4.34.616.287 2.035.888 2.722.888.817 0 2.15-.515 2.475-1.404.13-.3.215-.5.215-.673 0-.516-1.79-1.118-2.16-1.118zm-2.6 5.144c-1.563 0-3.06-.477-4.336-1.376l-3.025.962.974-2.876a7.625 7.625 0 0 1-1.466-4.504c0-4.226 3.428-7.654 7.653-7.654 4.227 0 7.655 3.428 7.655 7.654 0 4.226-3.428 7.654-7.655 7.654zm0-16.978c-5.146 0-9.323 4.176-9.323 9.323 0 1.674.443 3.31 1.272 4.762l-1.554 4.6 4.802-1.55c1.395.794 2.962 1.21 4.563 1.21 5.146 0 9.323-4.175 9.323-9.32 0-5.148-4.177-9.324-9.323-9.324z"/>
+        </svg>
+        <div class="absolute -top-12 right-0 bg-white text-laOfertaBlue text-[10px] font-black px-4 py-2 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-tighter">
+            Escríbenos por WhatsApp
+        </div>
+    </a>
+
+    <!-- ============== SCRIPTS ============== -->
+    <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script defer src="./script.js"></script>
+</body>
+</html>
