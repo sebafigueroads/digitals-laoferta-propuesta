@@ -873,7 +873,7 @@ function HeroSection() {
   return (
     <section>
       {/* COVER · Digitals brand DNA · cinematic style */}
-      <div className="d-cover d-stagger" style={{ minHeight: '78vh', backgroundImage: "linear-gradient(180deg, rgba(10,11,14,0.85), rgba(10,11,14,0.95)), url('assets/img/eco-hard-hero.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="d-cover d-stagger" style={{ minHeight: '78vh', backgroundImage: "linear-gradient(180deg, rgba(10,11,14,0.85), rgba(10,11,14,0.95)), url('assets/img/eco-hard-hero.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="d-dotgrid"/>
         <div className="d-holo yellow" style={{ top: '-80px', left: '-50px' }}>LA OFERTA</div>
         <div className="d-holo" style={{ bottom: '40px', right: '-100px' }}>ALIANZA</div>
@@ -3101,7 +3101,7 @@ const ECO_STYLES = {
     sub: 'departamental · editorial premium · gran tienda online',
     refs: 'Falabella · Paris · Whole Foods Online · Selfridges Food Hall · Amazon Fresh · El Corte Inglés Gourmet',
     insight: 'La Oferta tiene una marca conocida en mayorista físico, pero todavía no tiene plataforma online premium para ganar al comprador que hoy compra en Falabella, Paris, Jumbo Prime o Tottus Premium. La oportunidad: un portal departamental online que aprovecha la escala de La Oferta (precio mayorista) y se viste como tienda grande online (UX premium, editorial, fotos pulidas, despacho cuidado). Es La Oferta vestida para el comprador que paga delivery.',
-    hero: { kicker: '— LA OFERTA · PORTAL ONLINE · DESPACHO 24H', title: 'La despensa completa <em>al precio que conoces.</em>', sub: 'Más de 6.000 productos divididos por departamentos. Despacho a domicilio en 24 horas dentro de Santiago. Las marcas que ya compras, sin el sobreprecio del supermercado tradicional.', image: 'assets/img/eco-premium-hero.jpg', product: 'assets/img/eco-premium-prod.jpg' },
+    hero: { kicker: '— LA OFERTA · PORTAL ONLINE · DESPACHO 24H', title: 'La despensa completa <em>al precio que conoces.</em>', sub: 'Más de 6.000 productos divididos por departamentos. Despacho a domicilio en 24 horas dentro de Santiago. Las marcas que ya compras, sin el sobreprecio del supermercado tradicional.', image: 'assets/img/eco-premium-hero.png', product: 'assets/img/eco-premium-prod.png' },
     target: 'Profesionales 28-50 · familias con doble ingreso · vecinos Vitacura, Ñuñoa, Providencia, La Reina, Las Condes · valoran precio + experiencia online',
     typo: { display: 'Fraunces', body: 'Inter', mono: 'JetBrains Mono' },
     effects: [
@@ -3351,7 +3351,7 @@ function EcoStyleSection({ variant }) {
               </p>
               <span style={{ display: 'inline-block', padding: '.8rem 1.4rem', background: variant === 'catalogo' ? '#FFCE00' : '#0B0A08', color: variant === 'catalogo' ? '#0B0A08' : '#FFFFFF', borderRadius: '100px', fontFamily: 'var(--fm)', fontSize: '.7rem', letterSpacing: '.16em', textTransform: 'uppercase', fontWeight: 800, boxShadow: '0 8px 20px rgba(0,0,0,0.18)' }}>{variant === 'hard' ? 'Ver ofertas de hoy →' : variant === 'catalogo' ? 'Crear cuenta empresa →' : 'Inscribirme gratis →'}</span>
             </div>
-            <div style={{ aspectRatio: '4/3', backgroundImage: `url(${variant === 'hard' ? 'assets/rrss-promo/hard-combo-11.jpg' : variant === 'catalogo' ? 'assets/rrss-promo/pro-ahorro-11.jpg' : 'assets/rrss-promo/premium-kitchen-11.jpg'})`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '10px', boxShadow: '0 18px 40px rgba(0,0,0,0.25)', transform: 'rotate(-2deg)' }}/>
+            <div style={{ aspectRatio: '4/3', backgroundImage: `url(${variant === 'hard' ? 'assets/rrss-promo/hard-combo-11.png' : variant === 'catalogo' ? 'assets/rrss-promo/pro-ahorro-11.png' : 'assets/rrss-promo/premium-kitchen-11.png'})`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '10px', boxShadow: '0 18px 40px rgba(0,0,0,0.25)', transform: 'rotate(-2deg)' }}/>
           </div>
 
           {/* === BESTSELLERS · 8 productos grid === */}
@@ -3364,14 +3364,14 @@ function EcoStyleSection({ variant }) {
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '.7rem' }}>
               {[
-                { n: 'Aceite maravilla · 1L', p: '$1.890', off: '-15%', img: variant === 'premium' ? 'assets/rrss-promo/premium-kitchen-11.jpg' : 'assets/img/local-cajas-banderin.jpg' },
-                { n: 'Arroz Toddo · 5kg',     p: '$3.290', off: '-22%', img: variant === 'premium' ? 'assets/rrss-promo/premium-coffee-11.jpg' : 'assets/img/local-pasillo-banderin.jpg' },
-                { n: 'Detergente líquido 3L', p: '$4.490', off: '-30%', img: variant === 'premium' ? 'assets/rrss-promo/premium-pantry-169.jpg' : 'assets/img/eco-hard-prod.jpg' },
-                { n: 'Café molido · 500g',    p: '$4.290', off: '-20%', img: variant === 'premium' ? 'assets/rrss-promo/premium-receta-916.jpg' : 'assets/img/eco-hard-rrss.jpg' },
-                { n: 'Pasta penne · 12 pack', p: '$2.490', off: '-28%', img: variant === 'premium' ? 'assets/rrss-promo/premium-olive-916.jpg' : 'assets/rrss-promo/hard-combo-11.jpg' },
-                { n: 'Atún · pack 4 latas',   p: '$5.690', off: '-25%', img: variant === 'premium' ? 'assets/rrss-promo/premium-kitchen-11.jpg' : 'assets/rrss-promo/hard-detergente-916.jpg' },
-                { n: 'Azúcar refinada · 5kg', p: '$3.490', off: '-12%', img: variant === 'premium' ? 'assets/rrss-promo/premium-coffee-11.jpg' : 'assets/rrss-promo/hard-carousel-11.jpg' },
-                { n: 'Lentejas Toddo · 1kg',  p: '$1.290', off: '-18%', img: variant === 'premium' ? 'assets/rrss-promo/premium-pantry-169.jpg' : 'assets/rrss-promo/hard-oferta-11.jpg' }
+                { n: 'Aceite maravilla · 1L', p: '$1.890', off: '-15%', img: variant === 'premium' ? 'assets/rrss-promo/premium-kitchen-11.png' : 'assets/img/local-cajas-banderin.jpg' },
+                { n: 'Arroz Toddo · 5kg',     p: '$3.290', off: '-22%', img: variant === 'premium' ? 'assets/rrss-promo/premium-coffee-11.png' : 'assets/img/local-pasillo-banderin.jpg' },
+                { n: 'Detergente líquido 3L', p: '$4.490', off: '-30%', img: variant === 'premium' ? 'assets/rrss-promo/premium-pantry-169.png' : 'assets/img/eco-hard-prod.png' },
+                { n: 'Café molido · 500g',    p: '$4.290', off: '-20%', img: variant === 'premium' ? 'assets/rrss-promo/premium-receta-916.png' : 'assets/img/eco-hard-rrss.png' },
+                { n: 'Pasta penne · 12 pack', p: '$2.490', off: '-28%', img: variant === 'premium' ? 'assets/rrss-promo/premium-olive-916.png' : 'assets/rrss-promo/hard-combo-11.png' },
+                { n: 'Atún · pack 4 latas',   p: '$5.690', off: '-25%', img: variant === 'premium' ? 'assets/rrss-promo/premium-kitchen-11.png' : 'assets/rrss-promo/hard-detergente-916.png' },
+                { n: 'Azúcar refinada · 5kg', p: '$3.490', off: '-12%', img: variant === 'premium' ? 'assets/rrss-promo/premium-coffee-11.png' : 'assets/rrss-promo/hard-carousel-11.png' },
+                { n: 'Lentejas Toddo · 1kg',  p: '$1.290', off: '-18%', img: variant === 'premium' ? 'assets/rrss-promo/premium-pantry-169.png' : 'assets/rrss-promo/hard-oferta-11.png' }
               ].map((p, i) => (
                 <div key={i} style={{ background: variant === 'premium' ? '#FFFFFF' : variant === 'catalogo' ? '#FDFAF3' : '#F9F9F9', borderRadius: '10px', overflow: 'hidden', border: `1px solid rgba(0,0,0,0.06)`, transition: 'transform .25s, box-shadow .25s', cursor: 'pointer' }}
                   onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = `0 14px 30px ${s.color}25`; }}
@@ -3700,14 +3700,14 @@ function EcoDigitalsCutSection() {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '.6rem' }}>
             {[
-              { c: 'Abarrotes', n: '420 productos', img: 'assets/rrss-promo/hard-carousel-11.jpg', color: '#E31E2A' },
-              { c: 'Limpieza', n: '180 productos', img: 'assets/rrss-promo/hard-detergente-916.jpg', color: '#1B3A8C' },
-              { c: 'Bebidas', n: '210 productos', img: 'assets/rrss-promo/hard-combo-11.jpg', color: '#FFCE00' },
-              { c: 'Confitería', n: '95 productos', img: 'assets/img/promo-toddo.jpg', color: '#E31E2A' },
-              { c: 'Lácteos', n: '85 productos', img: 'assets/rrss-promo/premium-coffee-11.jpg', color: '#1B3A8C' },
-              { c: 'Higiene', n: '160 productos', img: 'assets/rrss-promo/hard-wsp-916.jpg', color: '#FFCE00' },
-              { c: 'Aseo Hogar', n: '120 productos', img: 'assets/img/promo-stack-hero.jpg', color: '#E31E2A' },
-              { c: 'Mascotas', n: '70 productos', img: 'assets/img/promo-despacho.jpg', color: '#1B3A8C' }
+              { c: 'Abarrotes', n: '420 productos', img: 'assets/rrss-promo/hard-carousel-11.png', color: '#E31E2A' },
+              { c: 'Limpieza', n: '180 productos', img: 'assets/rrss-promo/hard-detergente-916.png', color: '#1B3A8C' },
+              { c: 'Bebidas', n: '210 productos', img: 'assets/rrss-promo/hard-combo-11.png', color: '#FFCE00' },
+              { c: 'Confitería', n: '95 productos', img: 'assets/img/promo-toddo.png', color: '#E31E2A' },
+              { c: 'Lácteos', n: '85 productos', img: 'assets/rrss-promo/premium-coffee-11.png', color: '#1B3A8C' },
+              { c: 'Higiene', n: '160 productos', img: 'assets/rrss-promo/hard-wsp-916.png', color: '#FFCE00' },
+              { c: 'Aseo Hogar', n: '120 productos', img: 'assets/img/promo-stack-hero.png', color: '#E31E2A' },
+              { c: 'Mascotas', n: '70 productos', img: 'assets/img/promo-despacho.png', color: '#1B3A8C' }
             ].map((cat, i) => (
               <div key={i} style={{ position: 'relative', borderRadius: '10px', overflow: 'hidden', aspectRatio: '4/3', cursor: 'pointer', transition: 'transform .25s' }}
                 onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.03)'; }}
@@ -3905,7 +3905,7 @@ function EcoDigitalsCutSection() {
               <button style={{ marginTop: '1.4rem', background: '#FFCE00', color: '#0B0A08', padding: '.85rem 1.5rem', borderRadius: '100px', border: 0, fontFamily: 'Bebas Neue, sans-serif', fontSize: '.95rem', letterSpacing: '0.04em', cursor: 'pointer', fontWeight: 400, textTransform: 'uppercase', boxShadow: '0 14px 30px -10px rgba(255,206,0,0.40)' }}>Ver línea Toddo completa →</button>
             </div>
             <div style={{ position: 'relative', aspectRatio: '4/5', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 30px 80px -20px rgba(255,206,0,0.30)' }}>
-              <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(assets/img/promo-toddo.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}/>
+              <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(assets/img/promo-toddo.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}/>
               <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(0deg, rgba(11,10,8,0.55) 0%, transparent 50%)' }}/>
               <div style={{ position: 'absolute', bottom: '1rem', left: '1rem', right: '1rem' }}>
                 <span style={{ fontFamily: 'var(--fm)', fontSize: '.6rem', letterSpacing: '.2em', color: '#FFCE00', textTransform: 'uppercase', fontWeight: 800 }}>BESTSELLER · ARROZ 5KG</span>
@@ -4153,15 +4153,16 @@ function ToddoLandingSection() {
     { n: 'Snacks + desayuno', items: ['Galletas · 200g', 'Café instantáneo · 170g', 'Té · 100 bolsitas', 'Margarina · 250g'], color: '#EC4899' }
   ];
 
+  /* Productos REALES Toddo · URLs directas CDN laoferta.cl/wp-content/images */
   const productos = [
-    { n: 'Arroz Toddo · 5kg',          p: '$3.290', a: '$4.620', off: '-29%', tag: 'TOP VENTAS',    img: 'assets/img/products/prod-arroz-tucapel.jpg' },
-    { n: 'Aceite Toddo · 1L',          p: '$1.490', a: '$2.220', off: '-33%', tag: 'TOP VENTAS',    img: 'assets/img/products/prod-aceite-chef.jpg' },
-    { n: 'Detergente Toddo · 3L',      p: '$3.990', a: '$6.420', off: '-38%', tag: 'NUEVO',         img: 'assets/img/products/prod-quix.png' },
-    { n: 'Lentejas Toddo · 1kg',       p: '$1.290', a: '$1.890', off: '-32%', tag: 'TOP VENTAS',    img: 'assets/img/products/prod-lentejas.jpg' },
-    { n: 'Pasta Toddo · 400g',         p: '$590',   a: '$890',   off: '-34%', tag: '',              img: 'assets/img/products/prod-carozzi.jpg' },
-    { n: 'Azúcar Toddo · 1kg',         p: '$890',   a: '$1.290', off: '-31%', tag: '',              img: 'assets/img/products/prod-azucar-iansa.png' },
-    { n: 'Conserva Toddo · 140g',      p: '$1.190', a: '$1.890', off: '-37%', tag: '',              img: 'assets/img/products/prod-atun-robinson.jpg' },
-    { n: 'Papel Toddo · 12 rollos',    p: '$3.890', a: '$5.890', off: '-34%', tag: 'NUEVO',         img: 'assets/img/products/prod-confort.jpg' }
+    { n: 'Arroz Toddo G1 · 1kg',                 p: '$1.290', a: '$1.890', off: '-32%', tag: 'TOP VENTAS', img: 'https://laoferta.cl/wp-content/images/21237-1.jpg' },
+    { n: 'Aceite Vegetal Toddo · 900cc',         p: '$1.490', a: '$2.220', off: '-33%', tag: 'TOP VENTAS', img: 'https://laoferta.cl/wp-content/images/14370-1.jpg' },
+    { n: 'Atún Lomito en Aceite Toddo · 160 gr', p: '$1.190', a: '$1.890', off: '-37%', tag: '',           img: 'https://laoferta.cl/wp-content/images/11077-1.jpg' },
+    { n: 'Arvejas Toddo · 200 gr',               p: '$590',   a: '$890',   off: '-34%', tag: '',           img: 'https://laoferta.cl/wp-content/images/20134-1.jpg' },
+    { n: 'Aceite Toddo Vegetal · 5L',            p: '$5.990', a: '$8.890', off: '-33%', tag: 'TOP VENTAS', img: 'https://laoferta.cl/wp-content/images/20481-1.jpg' },
+    { n: 'Azúcar G2 Toddo · 1kg',                p: '$890',   a: '$1.290', off: '-31%', tag: '',           img: 'https://laoferta.cl/wp-content/images/21216-1.jpg' },
+    { n: 'Arvejas Toddo · lata 310 gr',          p: '$990',   a: '$1.390', off: '-29%', tag: '',           img: 'https://laoferta.cl/wp-content/images/20335-1.jpg' },
+    { n: 'Bolsa Basura Toddo · 50x70 · 10un',    p: '$890',   a: '$1.290', off: '-31%', tag: 'NUEVO',      img: 'https://laoferta.cl/wp-content/images/21709-1.jpg' }
   ];
 
   return (
@@ -5741,12 +5742,12 @@ function ShowcaseB2CSection() {
   const heroes = [
     { kind: 'hero', styleId: 'hard',     img: 'assets/img/local-pasillo-banderin.jpg', kicker: 'E.1 · HERO',  label: 'Hard Discount · pasillo banderines' },
     { kind: 'hero', styleId: 'catalogo', img: 'assets/img/local-vista-cenital.jpg',    kicker: 'E.2 · HERO',  label: 'Catálogo Pro · vista cenital' },
-    { kind: 'hero', styleId: 'premium',  img: 'assets/img/eco-premium-hero.jpg',       kicker: 'E.3 · HERO',  label: 'Premium Portal · departamentos' }
+    { kind: 'hero', styleId: 'premium',  img: 'assets/img/eco-premium-hero.png',       kicker: 'E.3 · HERO',  label: 'Premium Portal · departamentos' }
   ];
   const productos = [
     { kind: 'prod', styleId: 'hard',     img: 'assets/img/local-cajas-banderin.jpg',    kicker: 'E.1 · PROD', label: 'Hard Discount · cajas con banderines' },
     { kind: 'prod', styleId: 'catalogo', img: 'assets/img/local-pasillos-amarillo.jpg', kicker: 'E.2 · PROD', label: 'Catálogo Pro · pasillos amarillos' },
-    { kind: 'prod', styleId: 'premium',  img: 'assets/img/eco-premium-prod.jpg',         kicker: 'E.3 · PROD', label: 'Premium Portal · delivery box' }
+    { kind: 'prod', styleId: 'premium',  img: 'assets/img/eco-premium-prod.png',         kicker: 'E.3 · PROD', label: 'Premium Portal · delivery box' }
   ];
   const localesReales = [
     { kind: 'local', styleId: 'hard', img: 'assets/img/local-vista-aerea-azul.jpg',  kicker: 'LOCAL · CENITAL', label: 'Pisos azul + amarillo' },
@@ -5755,16 +5756,16 @@ function ShowcaseB2CSection() {
     { kind: 'local', styleId: 'hard', img: 'assets/img/local-galpon-fachada.jpg',    kicker: 'LOCAL · GALPÓN',  label: 'Galpón completo Mersán' }
   ];
   const premiumExtras = [
-    { kind: 'extra', styleId: 'premium', img: 'assets/img/eco-premium-limpieza.jpg',     kicker: 'E.3 · DEPTO',     label: 'Departamento limpieza editorial' },
-    { kind: 'extra', styleId: 'premium', img: 'assets/img/eco-premium-lifestyle.jpg',    kicker: 'E.3 · LIFESTYLE', label: 'Unboxing en casa moderna' },
-    { kind: 'extra', styleId: 'premium', img: 'assets/img/eco-premium-composicion.jpg',  kicker: 'E.3 · EDITORIAL', label: 'Composición de pantry' },
-    { kind: 'extra', styleId: 'premium', img: 'assets/img/eco-premium-pasillo.jpg',      kicker: 'E.3 · PASILLO',   label: 'Pasillo premium aspiracional' },
+    { kind: 'extra', styleId: 'premium', img: 'assets/img/eco-premium-limpieza.png',     kicker: 'E.3 · DEPTO',     label: 'Departamento limpieza editorial' },
+    { kind: 'extra', styleId: 'premium', img: 'assets/img/eco-premium-lifestyle.png',    kicker: 'E.3 · LIFESTYLE', label: 'Unboxing en casa moderna' },
+    { kind: 'extra', styleId: 'premium', img: 'assets/img/eco-premium-composicion.png',  kicker: 'E.3 · EDITORIAL', label: 'Composición de pantry' },
+    { kind: 'extra', styleId: 'premium', img: 'assets/img/eco-premium-pasillo.png',      kicker: 'E.3 · PASILLO',   label: 'Pasillo premium aspiracional' },
     { kind: 'extra', styleId: 'premium', img: 'assets/img/eco-premium-rrss.png',         kicker: 'E.3 · RRSS · IG', label: 'Feed editorial 1:1' }
   ];
   const rrssFeeds = [
-    { kind: 'rrss', styleId: 'hard',     img: 'assets/img/eco-hard-rrss.jpg',     kicker: 'R.B2C 1 · FEED IG', label: 'Hard Discount · ofertas pop' },
-    { kind: 'rrss', styleId: 'catalogo', img: 'assets/img/eco-curado-rrss.jpg',   kicker: 'R.B2C 2 · FEED IG', label: 'Catálogo Pro · caso B2B' },
-    { kind: 'rrss', styleId: 'premium',  img: 'assets/img/eco-live-rrss.jpg',     kicker: 'R.B2C 3 · FEED IG', label: 'Premium Portal · editorial' }
+    { kind: 'rrss', styleId: 'hard',     img: 'assets/img/eco-hard-rrss.png',     kicker: 'R.B2C 1 · FEED IG', label: 'Hard Discount · ofertas pop' },
+    { kind: 'rrss', styleId: 'catalogo', img: 'assets/img/eco-curado-rrss.png',   kicker: 'R.B2C 2 · FEED IG', label: 'Catálogo Pro · caso B2B' },
+    { kind: 'rrss', styleId: 'premium',  img: 'assets/img/eco-live-rrss.png',     kicker: 'R.B2C 3 · FEED IG', label: 'Premium Portal · editorial' }
   ];
 
   const allAssets = [...heroes, ...productos, ...premiumExtras, ...rrssFeeds, ...localesReales];
@@ -5856,55 +5857,55 @@ function BancoPromoSection() {
       title: 'Hard Discount · ofertas + combos · paleta amarillo/rojo',
       desc: 'Plantillas IG 1:1 + stories 9:16 + Facebook cover para campañas Hard Discount estilo Mayorista 10/Lider. Producto + descuento adelante.',
       items: [
-        { img: 'assets/rrss-promo/hard-oferta-11.jpg',     ratio: '1:1',  kicker: 'IG · OFERTA DÍA',  label: 'Producto único sobre fondo amarillo con tag rojo',     use: 'Feed IG · oferta diaria' },
-        { img: 'assets/rrss-promo/hard-combo-11.jpg',      ratio: '1:1',  kicker: 'IG · COMBO 3X1',   label: 'Tres productos en composición diagonal · combo deal',   use: 'Feed IG · combo semanal' },
-        { img: 'assets/rrss-promo/hard-carousel-11.jpg',   ratio: '1:1',  kicker: 'CARRUSEL · 6 ESENCIALES', label: 'Flat lay 6 productos circular sobre amarillo',  use: 'Carrusel IG · lista de compras' },
-        { img: 'assets/rrss-promo/hard-detergente-916.jpg',ratio: '9:16', kicker: 'STORY · LIMPIEZA', label: 'Producto solo sobre fondo rojo · destacado',           use: 'Stories IG diaria · push limpieza' },
-        { img: 'assets/rrss-promo/hard-wsp-916.jpg',       ratio: '9:16', kicker: 'STORY · WSP CLUB', label: 'Smartphone con chat WhatsApp sobre amarillo',          use: 'Story · captación Club WhatsApp' },
-        { img: 'assets/rrss-promo/hard-patrio-916.jpg',    ratio: '9:16', kicker: 'STORY · 18 SEPT', label: 'Empanadas + vino + banderas chilenas · patrio',         use: 'Campaña Fiestas Patrias · stories' },
-        { img: 'assets/rrss-promo/hard-cover-169.jpg',     ratio: '16:9', kicker: 'COVER · FACEBOOK', label: 'Cover horizontal del local · branding masivo',         use: 'Facebook page cover + Meta Ads' }
+        { img: 'assets/rrss-promo/hard-oferta-11.png',     ratio: '1:1',  kicker: 'IG · OFERTA DÍA',  label: 'Producto único sobre fondo amarillo con tag rojo',     use: 'Feed IG · oferta diaria' },
+        { img: 'assets/rrss-promo/hard-combo-11.png',      ratio: '1:1',  kicker: 'IG · COMBO 3X1',   label: 'Tres productos en composición diagonal · combo deal',   use: 'Feed IG · combo semanal' },
+        { img: 'assets/rrss-promo/hard-carousel-11.png',   ratio: '1:1',  kicker: 'CARRUSEL · 6 ESENCIALES', label: 'Flat lay 6 productos circular sobre amarillo',  use: 'Carrusel IG · lista de compras' },
+        { img: 'assets/rrss-promo/hard-detergente-916.png',ratio: '9:16', kicker: 'STORY · LIMPIEZA', label: 'Producto solo sobre fondo rojo · destacado',           use: 'Stories IG diaria · push limpieza' },
+        { img: 'assets/rrss-promo/hard-wsp-916.png',       ratio: '9:16', kicker: 'STORY · WSP CLUB', label: 'Smartphone con chat WhatsApp sobre amarillo',          use: 'Story · captación Club WhatsApp' },
+        { img: 'assets/rrss-promo/hard-patrio-916.png',    ratio: '9:16', kicker: 'STORY · 18 SEPT', label: 'Empanadas + vino + banderas chilenas · patrio',         use: 'Campaña Fiestas Patrias · stories' },
+        { img: 'assets/rrss-promo/hard-cover-169.png',     ratio: '16:9', kicker: 'COVER · FACEBOOK', label: 'Cover horizontal del local · branding masivo',         use: 'Facebook page cover + Meta Ads' }
       ]
     },
     {
       title: 'Catálogo Pro · cuenta empresa · paleta navy/amarillo',
       desc: 'Plantillas LinkedIn + IG B2B + Facebook con foco en negocios chicos: peluquerías, restaurantes, botillerías, productoras. Foco en factura + ahorro + caso.',
       items: [
-        { img: 'assets/rrss-promo/pro-shopkeeper-11.jpg',  ratio: '1:1',  kicker: 'IG · CASO B2B',     label: 'Dueña de negocio con bolsas de compra · testimonial', use: 'Post caso · LinkedIn + IG' },
-        { img: 'assets/rrss-promo/pro-factura-11.jpg',     ratio: '1:1',  kicker: 'IG · FACTURA AUTO', label: 'Productos + factura + calculadora · ventaja fiscal',  use: 'Post explicativo · cuenta empresa' },
-        { img: 'assets/rrss-promo/pro-ahorro-11.jpg',      ratio: '1:1',  kicker: 'IG · AHORRO MES',  label: 'Chart visualización + productos · data-driven post', use: 'Carrusel ahorro · LinkedIn pin' }
+        { img: 'assets/rrss-promo/pro-shopkeeper-11.png',  ratio: '1:1',  kicker: 'IG · CASO B2B',     label: 'Dueña de negocio con bolsas de compra · testimonial', use: 'Post caso · LinkedIn + IG' },
+        { img: 'assets/rrss-promo/pro-factura-11.png',     ratio: '1:1',  kicker: 'IG · FACTURA AUTO', label: 'Productos + factura + calculadora · ventaja fiscal',  use: 'Post explicativo · cuenta empresa' },
+        { img: 'assets/rrss-promo/pro-ahorro-11.png',      ratio: '1:1',  kicker: 'IG · AHORRO MES',  label: 'Chart visualización + productos · data-driven post', use: 'Carrusel ahorro · LinkedIn pin' }
       ]
     },
     {
       title: 'Premium Portal · departamentos lifestyle · paleta navy/gold/cream',
       desc: 'Plantillas Instagram editoriales + stories premium + newsletter cover para audiencia 28-50 valoradora de experiencia + precio. Estilo Falabella Casa / Whole Foods.',
       items: [
-        { img: 'assets/rrss-promo/premium-kitchen-11.jpg',  ratio: '1:1',  kicker: 'IG · LIFESTYLE',  label: 'Kitchen scene · pan + pasta + aceite en marble',     use: 'Feed editorial · departamento despensa' },
-        { img: 'assets/rrss-promo/premium-coffee-11.jpg',   ratio: '1:1',  kicker: 'IG · ROUTINE',    label: 'Mug + panificado · slow morning editorial',          use: 'Feed lifestyle · domingo recetas' },
-        { img: 'assets/rrss-promo/premium-olive-916.jpg',   ratio: '9:16', kicker: 'STORY · GOURMET', label: 'Olive oil bottle · cream marble · soft gold light',  use: 'Stories destacado · premium product' },
-        { img: 'assets/rrss-promo/premium-plus-916.jpg',    ratio: '9:16', kicker: 'STORY · LO PLUS', label: 'Tarjeta membresía dorada · La Oferta Plus',          use: 'Story · captación Plus · membership' },
-        { img: 'assets/rrss-promo/premium-receta-916.jpg',  ratio: '9:16', kicker: 'STORY · RECETA',  label: 'Cazuela en preparación · ingredientes chilenos',     use: 'Story receta semana · viernes 10am' },
-        { img: 'assets/rrss-promo/premium-pantry-169.jpg',  ratio: '16:9', kicker: 'COVER · DEPTOS',  label: 'Pantry estantes · pendant lighting premium',         use: 'Banner home · YouTube channel art' }
+        { img: 'assets/rrss-promo/premium-kitchen-11.png',  ratio: '1:1',  kicker: 'IG · LIFESTYLE',  label: 'Kitchen scene · pan + pasta + aceite en marble',     use: 'Feed editorial · departamento despensa' },
+        { img: 'assets/rrss-promo/premium-coffee-11.png',   ratio: '1:1',  kicker: 'IG · ROUTINE',    label: 'Mug + panificado · slow morning editorial',          use: 'Feed lifestyle · domingo recetas' },
+        { img: 'assets/rrss-promo/premium-olive-916.png',   ratio: '9:16', kicker: 'STORY · GOURMET', label: 'Olive oil bottle · cream marble · soft gold light',  use: 'Stories destacado · premium product' },
+        { img: 'assets/rrss-promo/premium-plus-916.png',    ratio: '9:16', kicker: 'STORY · LO PLUS', label: 'Tarjeta membresía dorada · La Oferta Plus',          use: 'Story · captación Plus · membership' },
+        { img: 'assets/rrss-promo/premium-receta-916.png',  ratio: '9:16', kicker: 'STORY · RECETA',  label: 'Cazuela en preparación · ingredientes chilenos',     use: 'Story receta semana · viernes 10am' },
+        { img: 'assets/rrss-promo/premium-pantry-169.png',  ratio: '16:9', kicker: 'COVER · DEPTOS',  label: 'Pantry estantes · pendant lighting premium',         use: 'Banner home · YouTube channel art' }
       ]
     },
     {
       title: 'Imágenes base + locales reales',
       desc: 'Activos producidos en sesión previa: fotos del local Mersán + 10 promocionales originales que se pueden recortar para nuevos posts.',
       items: [
-        { img: 'assets/img/promo-stack-hero.jpg', ratio: '16:9', kicker: 'STACK HERO',    label: 'Pirámide de productos · paleta La Oferta',     use: 'Hero web + Meta ad' },
-        { img: 'assets/img/promo-combo.jpg',      ratio: '16:9', kicker: 'COMBO PREMIUM', label: 'Tres productos premium · cream + navy',         use: 'Hero E.3 + email combo' },
-        { img: 'assets/img/promo-despacho.jpg',   ratio: '16:9', kicker: 'DESPACHO 24H',  label: 'Repartidor en la puerta · servicio',           use: 'Banner servicio + landing' },
-        { img: 'assets/img/promo-toddo.jpg',      ratio: '1:1',  kicker: 'TODDO BAG',     label: 'Marca propia Toddo · packaging neutro',         use: 'Feed IG · marca casa' },
-        { img: 'assets/img/promo-receta.jpg',     ratio: '1:1',  kicker: 'RECETA · FLATLAY', label: 'Ingredientes en wood board · chilean recipe', use: 'Newsletter + reel cooking' },
-        { img: 'assets/img/promo-sandra.jpg',     ratio: '9:16', kicker: 'SANDRA · BTS',  label: 'Shopkeeper testimonial story · La Oferta Pro',  use: 'Story caso B2B · E.2' }
+        { img: 'assets/img/promo-stack-hero.png', ratio: '16:9', kicker: 'STACK HERO',    label: 'Pirámide de productos · paleta La Oferta',     use: 'Hero web + Meta ad' },
+        { img: 'assets/img/promo-combo.png',      ratio: '16:9', kicker: 'COMBO PREMIUM', label: 'Tres productos premium · cream + navy',         use: 'Hero E.3 + email combo' },
+        { img: 'assets/img/promo-despacho.png',   ratio: '16:9', kicker: 'DESPACHO 24H',  label: 'Repartidor en la puerta · servicio',           use: 'Banner servicio + landing' },
+        { img: 'assets/img/promo-toddo.png',      ratio: '1:1',  kicker: 'TODDO BAG',     label: 'Marca propia Toddo · packaging neutro',         use: 'Feed IG · marca casa' },
+        { img: 'assets/img/promo-receta.png',     ratio: '1:1',  kicker: 'RECETA · FLATLAY', label: 'Ingredientes en wood board · chilean recipe', use: 'Newsletter + reel cooking' },
+        { img: 'assets/img/promo-sandra.png',     ratio: '9:16', kicker: 'SANDRA · BTS',  label: 'Shopkeeper testimonial story · La Oferta Pro',  use: 'Story caso B2B · E.2' }
       ]
     },
     {
       title: 'Plantillas con texto · ready to post · paleta La Oferta',
       desc: '4 plantillas con copy ya tipografiado encima de la imagen · listas para publicar sin pasar por diseño. Cubren los 4 jobs comerciales: producto + precio, oferta semanal, ahorro acumulado y captación Club WhatsApp. La marca puede cambiar copy/precio y publicarlas el mismo día.',
       items: [
-        { img: 'assets/rrss-promo/text-arroz-11.jpg',       ratio: '1:1',  kicker: 'IG · PRODUCTO + PRECIO', label: 'Arroz Toddo 5kg · $3.290 · −22%',                use: 'Feed IG diario · producto del día · paid Meta' },
-        { img: 'assets/rrss-promo/text-superlunes-916.jpg', ratio: '9:16', kicker: 'STORY · CAMPAÑA',        label: 'Súper Lunes · hasta 50% OFF',                     use: 'Story IG lunes 10am · destacado semanal' },
-        { img: 'assets/rrss-promo/text-ahorra180-11.jpg',   ratio: '1:1',  kicker: 'IG · AHORRO MES',        label: 'Ahorra $180.000 al mes vs supermercados',         use: 'Carrusel B2C · LinkedIn pin + paid TOFU' },
+        { img: 'assets/rrss-promo/text-arroz-11.png',       ratio: '1:1',  kicker: 'IG · PRODUCTO + PRECIO', label: 'Arroz Toddo 5kg · $3.290 · −22%',                use: 'Feed IG diario · producto del día · paid Meta' },
+        { img: 'assets/rrss-promo/text-superlunes-916.png', ratio: '9:16', kicker: 'STORY · CAMPAÑA',        label: 'Súper Lunes · hasta 50% OFF',                     use: 'Story IG lunes 10am · destacado semanal' },
+        { img: 'assets/rrss-promo/text-ahorra180-11.png',   ratio: '1:1',  kicker: 'IG · AHORRO MES',        label: 'Ahorra $180.000 al mes vs supermercados',         use: 'Carrusel B2C · LinkedIn pin + paid TOFU' },
         { img: 'assets/rrss-promo/text-wspclub-916.png',    ratio: '9:16', kicker: 'STORY · WSP CLUB',       label: 'Únete al Club WhatsApp · ofertas antes que nadie', use: 'Story captación · CTA link sticker · loyalty' }
       ]
     }
