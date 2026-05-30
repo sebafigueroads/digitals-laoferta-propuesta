@@ -622,24 +622,18 @@ function Sidebar({ section, setSection }) {
       { id: 'eco-digitalscut', num: '03.8', label: '★ E.4 · Digitals Cut · Hard + video + calculadora ★' },
       { id: 'toddo-landing',   num: '03.9', label: '🟨 Landing Toddo · marca propia dedicada ★' }
     ]},
-    { name: 'E · Showcase RRSS + contenidos', featured: true, badge: 'CONTENIDO', items: [
-      { id: 'rrss-plan',      num: '04',   label: '📡 Plan RRSS · frecuencia + pilares' },
-      { id: 'rrss-galeria',   num: '04.1', label: '🎬 Galería · 16 piezas muestra' },
-      { id: 'rrss-feeds',     num: '04.2', label: '📱 Feeds IG · grid 9 posts simulación' },
-      { id: 'rrss-b2c',       num: '04.3', label: '🛒 RRSS B2C · línea ecommerce' },
-      { id: 'mailing-semana', num: '04.4', label: '✉️ Mailing · Productos de la semana ★' }
-    ]},
-    { name: 'E2 · Estrategia Comunicacional', featured: true, badge: 'COMM · 3 LÍNEAS', items: [
-      { id: 'comm-general', num: '04.6', label: '📣 Comm general · marca paraguas' },
-      { id: 'comm-b2c',     num: '04.7', label: '🛒 Comm B2C · ecommerce nueva audiencia' },
-      { id: 'comm-b2b',     num: '04.8', label: '📦 Comm B2B · locales (resumen)' }
+    { name: 'E · Estrategia comunicacional + Motor Ads + Mailing', featured: true, badge: 'COMM · ADS · MAIL', items: [
+      { id: 'comm-general',    num: '04.1', label: '📣 Comm general · marca paraguas' },
+      { id: 'comm-b2c',        num: '04.2', label: '🛒 Comm B2C · ecommerce nueva audiencia' },
+      { id: 'comm-b2b',        num: '04.3', label: '📦 Comm B2B · locales (resumen)' },
+      { id: 'mailing-semana',  num: '04.4', label: '✉️ Mailing · Productos de la semana ★' },
+      { id: 'ads-engine',      num: '04.5', label: '⚡ Motor Ads · precios dinámicos + IA Hapee ★' }
     ]},
     { name: 'F · Showcase visual B2C', featured: true, badge: 'GALERÍA · 30+ PIEZAS', items: [
       { id: 'showcase-b2c', num: '05.0', label: '🎨 Showcase B2C · todas las gráficas y videos' },
       { id: 'banco-promo',  num: '05.1', label: '🛒 Banco de gráficas promocionales · productos' }
     ]},
-    { name: 'G · Roadmap + Motor Ads', featured: true, badge: 'TIMELINE + IA', items: [
-      { id: 'ads-engine',   num: '05.2', label: '⚡ Motor Ads · precios dinámicos + IA Hapee' },
+    { name: 'G · Roadmap 2026', featured: true, badge: 'TIMELINE', items: [
       { id: 'roadmap-2026', num: '05.5', label: '🛣️ Roadmap 2026 · lo hecho + lo que viene' }
     ]},
     { name: 'H · Inversión', featured: true, badge: 'Comercial', items: [
@@ -2836,18 +2830,18 @@ function Inv3Section() {
    ==================================================================== */
 function AuditWebSection() {
   const findings = [
-    { tag: 'CRÍTICO', color: '#FF4D6D', title: 'Web institucional sin identidad fuerte', desc: 'Diseño que parece de hace 8-10 años · La Oferta no se diferencia de cualquier guardiana de seguridad genérica. Sin posicionamiento premium pese a operar con clientes corporativos.' },
-    { tag: 'CRÍTICO', color: '#FF4D6D', title: 'Sin captura segmentada por servicio', desc: 'Un solo formulario genérico. La Oferta opera retail, corporativo, eventos y residencial · cada audiencia tiene un dolor distinto y una urgencia distinta. La web los trata igual.' },
-    { tag: 'GRAVE',   color: '#FBBF24', title: 'Cero contenido B2B premium', desc: 'No hay casos, no hay portfolio, no hay narrativa de cómo La Oferta opera. Para vender a un Gerente General de mall o de constructora, el sitio no aporta nada.' },
-    { tag: 'GRAVE',   color: '#FBBF24', title: 'SEO + AEO inexistente', desc: '"empresas de retail mayorista Chile" · "guardias para empresa" · "vigilancia eventos" — La Oferta debería rankear en top 5 de Google y aparecer en respuestas de ChatGPT/Gemini · hoy no aparece.' },
-    { tag: 'OPP',     color: 'var(--accent)', title: 'El servicio merece narrativa cinematográfica', desc: 'Seguridad privada B2B premium es de los rubros con MÁS espacio para storytelling visual (paisajes nocturnos, equipos en acción, monitoreo SOC). La web actual no aprovecha nada.' },
-    { tag: 'OPP',     color: 'var(--accent)', title: 'La Oferta debe contar su escudo', desc: 'El nombre La Oferta ya tiene fuerza simbólica (escudo · vigía · guardián). Una nueva web puede capitalizar eso en branding visual y tono editorial completo · más allá de "ofrecemos retail mayorista".' }
+    { tag: 'CRÍTICO', color: '#FF4D6D', title: 'Sin checkout · sin ecommerce B2C operativo', desc: 'laoferta.cl muestra productos pero no vende online. El cliente final ve precios y categorías, pero para comprar debe ir físicamente al local. En 2026, esto deja un canal de revenue completo afuera del juego.' },
+    { tag: 'CRÍTICO', color: '#FF4D6D', title: 'Búsqueda WordPress nativa · sin landing de marca propia', desc: 'La marca propia Toddo aparece via /?s=toddo&post_type=product (query string del buscador interno). Sin URL limpia, sin storytelling, sin schema markup. Toddo merece su propia landing /toddo · no un search results.' },
+    { tag: 'GRAVE',   color: '#FBBF24', title: 'Sin diferenciación visible vs supermercados', desc: 'El usuario que llega no entiende por qué La Oferta es más barata que Líder, Tottus o Jumbo. No hay comparativa de precios, no hay calculadora de ahorro · solo un catálogo plano. La propuesta de valor se diluye.' },
+    { tag: 'GRAVE',   color: '#FBBF24', title: 'SEO + AEO inexistente para retail mayorista', desc: '"mayorista alimentos Santiago" · "comprar al por mayor Chile" · "abarrotes mayorista" — La Oferta debería rankear top 5 en Google y aparecer en respuestas de ChatGPT/Gemini/Perplexity. Hoy no aparece en ninguno.' },
+    { tag: 'OPP',     color: 'var(--accent)', title: 'Marca propia Toddo subutilizada', desc: 'Toddo tiene 50+ productos con potencial de margen propio. Si se le da landing dedicada + feed Merchant Center exclusivo + campañas Shopping segmentadas, puede convertirse en un sub-brand que potencia el ticket promedio.' },
+    { tag: 'OPP',     color: 'var(--accent)', title: '16 locales · cero geolocalización · cero click & collect', desc: 'La operación física es el activo único de La Oferta vs ecommerce puros. Pero la web no permite "elegir mi local más cercano" · ni "comprar online y retirar en local". Capacidad operacional real que la web ignora.' }
   ];
   return (
     <section>
       <SectionHead num="02"
         title="Diagnóstico · <em>laoferta.cl hoy</em>"
-        desc="6 hallazgos del sitio actual que justifican un rediseño completo. No son cosméticos · son fugas concretas de oportunidad comercial en un rubro donde la confianza visual de la web es el 80% de la decisión."/>
+        desc="6 hallazgos del sitio actual que justifican una toma integral del canal B2C. No son cosméticos · son fugas concretas de revenue en un rubro donde el cliente final ya compara precios online antes de salir a comprar."/>
 
       <div className="info-grid cols-2" style={{ marginBottom: '2rem' }}>
         {findings.map((f, i) => (
@@ -2860,8 +2854,8 @@ function AuditWebSection() {
       </div>
 
       <div className="info-card" style={{ borderColor: 'var(--accent)', background: 'linear-gradient(135deg, var(--accent-soft), transparent 80%)' }}>
-        <h4>La síntesis · <span className="accent">por qué rediseñar ahora</span></h4>
-        <p>En retail mayorista B2B, el cliente decide con quién contratar en 3 visitas: la primera es Google · la segunda es la web · la tercera es la primera reunión. Si la web no transmite que La Oferta opera al nivel premium que realmente opera, perdemos al cliente <em>antes de que nos llame</em>. Las 3 propuestas que siguen apuntan a cambiar eso desde 3 ángulos distintos.</p>
+        <h4>La síntesis · <span className="accent">por qué tomar el B2C ahora</span></h4>
+        <p>El cliente final ya decide su carro semanal en el móvil antes de salir de la casa. Si laoferta.cl no permite ver stock por local, calcular ahorro vs supermercados, comprar online y retirar en local, La Oferta pierde el primer touchpoint <em>antes de que el cliente piense en el local</em>. La toma integral del canal B2C (sección 03.4 con 4 estilos + landing Toddo + calculadora) cierra ese gap sin tocar lo que ya funciona en B2B.</p>
       </div>
     </section>
   );
@@ -3121,16 +3115,18 @@ function EcoOverviewSection({ setSection }) {
   return (
     <section>
       <SectionHead num="03.4"
-        title="E-commerce B2C · <em>3 estilos · próxima fase</em>"
-        desc="La fase 2 de La Oferta: tomar el control del canal e-commerce. Hoy los 16 locales (B2B) son el 85% del revenue. El e-commerce abre una segunda vía de crecimiento con audiencia B2C. Tres estilos posibles · cada uno con su narrativa, RRSS y plan de pauta acoplado."/>
+        title="E-commerce B2C · <em>4 estilos + calculadora + landing Toddo</em>"
+        desc="La fase 2 de La Oferta: tomar el control del canal e-commerce. Cuatro estilos navegables, una calculadora de ahorro vs supermercados, y una landing dedicada a la marca propia Toddo. Todo bajo el mismo paraguas operativo · una sola plataforma 100% a medida."/>
 
       <div className="info-card" style={{ marginBottom: '1.6rem', borderColor: '#FF8A00', background: 'linear-gradient(135deg, rgba(255,138,0,0.10), transparent 80%)' }}>
         <div className="d-kicker yellow">— LECTURA ESTRATÉGICA</div>
         <h4 style={{ fontSize: '1.3rem' }}>El canal e-commerce no es "lo mismo" online · es <span style={{ color: '#FF8A00', fontStyle: 'italic' }}>una marca distinta</span> bajo el mismo paraguas.</h4>
-        <p>Mientras los locales B2B venden a comerciantes que llegan a comprar pallets, el e-commerce capta a UN COMPRADOR FINAL distinto (familia, profesional, creador de contenido). La paleta, voz, plan de productos destacados y mix de canales cambia. Por eso 3 estilos: cada uno apuesta a una hipótesis distinta de mercado.</p>
+        <p>Mientras los locales venden a comerciantes que llegan a comprar pallets, el e-commerce capta a un comprador final distinto (familia, profesional, almacenero pequeño, creador de contenido). La paleta, voz, plan de productos destacados y mix de canales cambia. Por eso 4 estilos: cada uno apuesta a una hipótesis distinta de mercado · más una <b>calculadora de ahorro vs supermercados</b> y la <b>landing /toddo dedicada</b> a la marca propia.</p>
       </div>
 
-      <div className="info-grid cols-3" style={{ marginBottom: '1.6rem' }}>
+      {/* 4 ESTILOS ECOMMERCE · grid 2x2 */}
+      <div className="d-kicker yellow" style={{ marginBottom: '.8rem' }}>4 estilos navegables · click en cada card</div>
+      <div className="info-grid cols-2" style={{ marginBottom: '1.6rem' }}>
         {Object.entries(ECO_STYLES).map(([k, s]) => (
           <div key={k} className="info-card d-tilt" style={{ borderColor: s.color, borderTop: `4px solid ${s.color}`, cursor: 'pointer', position: 'relative', overflow: 'hidden', minHeight: '420px', display: 'flex', flexDirection: 'column' }}
             onClick={() => { setSection('eco-' + k); window.location.hash = 'eco-' + k; window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
@@ -3144,12 +3140,55 @@ function EcoOverviewSection({ setSection }) {
             <span style={{ fontFamily: 'var(--fm)', fontSize: '.62rem', letterSpacing: '.18em', color: s.color, textTransform: 'uppercase', borderTop: '1px dashed var(--line)', paddingTop: '.6rem' }}>ABRIR ESTILO COMPLETO →</span>
           </div>
         ))}
+
+        {/* CARD 4 · DIGITALS CUT (estilo recomendado, con video + calculadora) */}
+        <div className="info-card d-tilt" style={{ borderColor: '#C6FF3A', borderTop: '4px solid #C6FF3A', cursor: 'pointer', position: 'relative', overflow: 'hidden', minHeight: '420px', display: 'flex', flexDirection: 'column', background: 'linear-gradient(135deg, rgba(198,255,58,0.10), transparent 80%)' }}
+          onClick={() => { setSection('eco-digitalscut'); window.location.hash = 'eco-digitalscut'; window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+          <div style={{ aspectRatio: '16/9', backgroundImage: "linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(11,10,8,0.7) 100%), url('assets/img/local-pasillos-amarillo.jpg')", backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '8px', marginBottom: '1rem', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ position: 'absolute', top: '.7rem', left: '.7rem', fontFamily: 'var(--fm)', fontSize: '.6rem', letterSpacing: '.2em', color: '#0B0A08', background: '#C6FF3A', padding: '.3rem .6rem', borderRadius: '4px', textTransform: 'uppercase', fontWeight: 800 }}>★ DIGITALS CUT · RECOMENDADO</span>
+            <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '2.4rem', color: '#C6FF3A', textShadow: '0 4px 16px rgba(0,0,0,0.6)', letterSpacing: '0.02em' }}>HARD + VIDEO + CALC</div>
+          </div>
+          <div className="d-kicker" style={{ color: '#C6FF3A', marginBottom: '.4rem' }}><span style={{ background: '#C6FF3A' }}/>ESTILO · E.4</div>
+          <h4 style={{ fontFamily: 'var(--f-display)', fontSize: '1.6rem', fontWeight: 400, textTransform: 'uppercase', letterSpacing: '0.015em', marginBottom: '.4rem' }}>Digitals Cut · con calculadora</h4>
+          <div style={{ fontFamily: 'var(--fm)', fontSize: '.66rem', letterSpacing: '.06em', color: 'var(--mute)', textTransform: 'uppercase', marginBottom: '.8rem' }}>Hard discount + video hero + calculadora ahorro</div>
+          <p style={{ fontSize: '.85rem', color: 'var(--mute)', lineHeight: 1.55, marginBottom: '1rem', flex: 1 }}>Suma al estilo Hard Discount un <b style={{ color: '#C6FF3A' }}>video hero real</b> grabado en local + una <b style={{ color: '#C6FF3A' }}>calculadora de ahorro</b> que compara el carro La Oferta contra Líder, Tottus, Jumbo y Unimarc en tiempo real. Pieza estrella conversional.</p>
+          <span style={{ fontFamily: 'var(--fm)', fontSize: '.62rem', letterSpacing: '.18em', color: '#C6FF3A', textTransform: 'uppercase', borderTop: '1px dashed var(--line)', paddingTop: '.6rem' }}>ABRIR DIGITALS CUT →</span>
+        </div>
+      </div>
+
+      {/* DOS EXTRAS · CALCULADORA vs SUPERMERCADOS + LANDING TODDO */}
+      <div className="d-kicker yellow" style={{ marginBottom: '.8rem' }}>★ Componentes diferenciales · incluidos en cualquier estilo</div>
+      <div className="info-grid cols-2" style={{ marginBottom: '1.6rem' }}>
+        <div className="info-card d-tilt" style={{ borderColor: '#DC2626', borderTop: '4px solid #DC2626', background: 'linear-gradient(135deg, rgba(220,38,38,0.10), transparent 80%)' }}>
+          <div className="d-kicker red">CALCULADORA AHORRO</div>
+          <h4 style={{ fontFamily: 'var(--f-display)', fontSize: '1.4rem', fontWeight: 400, textTransform: 'uppercase', marginTop: '.3rem', marginBottom: '.6rem' }}>La Oferta vs Líder · Tottus · Jumbo · Unimarc</h4>
+          <p style={{ fontSize: '.88rem', marginBottom: '.8rem' }}>Widget interactivo donde el visitante elige su rubro (familia, almacén, restaurante) y sale en tiempo real cuánto se ahorra vs los 4 supermercados líderes. <b>Pieza conversional crítica</b> · transforma curiosidad en intención de compra.</p>
+          <ul style={{ fontSize: '.82rem' }}>
+            <li>Precios reales actualizados semanalmente</li>
+            <li>Comparación por canasta tipo (40+ productos)</li>
+            <li>Ahorro mensual proyectado + CTA "empezar carro"</li>
+            <li>Capta email para enviar la propuesta personalizada</li>
+          </ul>
+        </div>
+        <div className="info-card d-tilt" style={{ borderColor: '#FFCE00', borderTop: '4px solid #FFCE00', background: 'linear-gradient(135deg, rgba(255,206,0,0.10), transparent 80%)', cursor: 'pointer' }}
+          onClick={() => { setSection('toddo-landing'); window.location.hash = 'toddo-landing'; window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+          <div className="d-kicker yellow">LANDING /TODDO</div>
+          <h4 style={{ fontFamily: 'var(--f-display)', fontSize: '1.4rem', fontWeight: 400, textTransform: 'uppercase', marginTop: '.3rem', marginBottom: '.6rem' }}>Marca propia dedicada · sub-brand con identidad</h4>
+          <p style={{ fontSize: '.88rem', marginBottom: '.8rem' }}>URL limpia /toddo · catálogo navegable de los 54 productos Toddo con comparativa de precios vs marca líder. SEO con schema Brand + Product, feed Merchant Center dedicado, campañas Meta + Google Shopping segmentadas a la marca propia.</p>
+          <ul style={{ fontSize: '.82rem' }}>
+            <li>Hero amarillo/azul con identidad Toddo propia</li>
+            <li>6 categorías navegables (abarrotes, conservas, limpieza, bebidas, etc.)</li>
+            <li>Top 8 productos · tabla comparativa Toddo vs Líder</li>
+            <li>CTA: "Cambia 6 productos · ahorra $7.730 semanales"</li>
+          </ul>
+          <span style={{ fontFamily: 'var(--fm)', fontSize: '.62rem', letterSpacing: '.18em', color: '#B45309', textTransform: 'uppercase', borderTop: '1px dashed var(--line)', paddingTop: '.6rem', display: 'block', marginTop: '.6rem' }}>ABRIR LANDING TODDO 03.9 →</span>
+        </div>
       </div>
 
       <div className="info-card" style={{ borderColor: 'var(--accent)' }}>
         <div className="d-kicker">— DECISIÓN CRÍTICA</div>
-        <h4 style={{ fontSize: '1.3rem' }}>El estilo elegido <span className="accent">define la RRSS</span> y la estrategia de pauta.</h4>
-        <p>Cada estilo de ecommerce viene pareado con una propuesta de RRSS B2C distinta (sección 04.3/4/5) y con un plan de pauta Meta/Google diferenciado. Recomendamos no mezclar — la coherencia es lo que convierte. Si necesitas evaluar pricing entre estilos, ver sección F (Inversión).</p>
+        <h4 style={{ fontSize: '1.3rem' }}>Recomendación · <span className="accent">Digitals Cut + landing /toddo</span> + calculadora activa.</h4>
+        <p>Los 4 estilos son hipótesis válidas, pero el combo recomendado es <b>Digitals Cut</b> (hard discount + video hero + calculadora) · <b>landing /toddo dedicada</b> para potenciar la marca propia · <b>calculadora vs supermercados</b> como pieza conversional siempre visible. Coherencia visual + 3 anclas de conversión distintas operando en paralelo.</p>
       </div>
     </section>
   );
@@ -6268,9 +6307,6 @@ function App() {
       case 'exitos':   return <ExitosSection/>;
       case 'audit':    return <AuditWebSection/>;
       case 'web-blindada': return <WebMockupSection variant="blindada"/>;
-      case 'rrss-plan':    return <RRSSPlanSection/>;
-      case 'rrss-galeria': return <RRSSGaleriaSection/>;
-      case 'rrss-feeds':   return <RRSSFeedsSection/>;
       case 'ecommerce':       return <EcommerceSection/>;
       case 'eco-overview':    return <EcoOverviewSection setSection={setSection}/>;
       case 'eco-hard':        return <EcoStyleSection variant="hard"/>;
@@ -6278,18 +6314,17 @@ function App() {
       case 'eco-premium':     return <EcoStyleSection variant="premium"/>;
       case 'eco-digitalscut': return <EcoDigitalsCutSection/>;
       case 'toddo-landing':   return <ToddoLandingSection/>;
-      case 'rrss-b2c':     return <RrssB2CSection variant="ecommerce"/>;
-      case 'mailing-semana': return <MailingSemanaSection/>;
-      case 'comm-general': return <CommGeneralSection/>;
-      case 'comm-b2c':     return <CommB2CSection/>;
-      case 'comm-b2b':     return <CommB2BSection/>;
-      case 'audit-b2c':    return <AuditB2CSection/>;
-      case 'showcase-b2c': return <ShowcaseB2CSection/>;
-      case 'banco-promo':  return <BancoPromoSection/>;
-      case 'roadmap-2026': return <Roadmap2026Section/>;
-      case 'inversion':    return <InversionLaOfertaSection/>;
-      case 'ads-engine':   return <AdsSection/>;
-      default:             return <HeroSection/>;
+      case 'mailing-semana':  return <MailingSemanaSection/>;
+      case 'comm-general':    return <CommGeneralSection/>;
+      case 'comm-b2c':        return <CommB2CSection/>;
+      case 'comm-b2b':        return <CommB2BSection/>;
+      case 'ads-engine':      return <AdsSection/>;
+      case 'audit-b2c':       return <AuditB2CSection/>;
+      case 'showcase-b2c':    return <ShowcaseB2CSection/>;
+      case 'banco-promo':     return <BancoPromoSection/>;
+      case 'roadmap-2026':    return <Roadmap2026Section/>;
+      case 'inversion':       return <InversionLaOfertaSection/>;
+      default:                return <HeroSection/>;
     }
   };
 
