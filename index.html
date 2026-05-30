@@ -2860,33 +2860,48 @@ function AuditWebSection() {
           <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--fb)', fontSize: '.78rem' }}>
             <thead>
               <tr style={{ background: 'var(--bg-deep)', color: 'var(--ink)' }}>
-                <th style={{ padding: '.8rem .9rem', textAlign: 'left', fontFamily: 'var(--fm)', fontSize: '.6rem', letterSpacing: '.2em', textTransform: 'uppercase', fontWeight: 800, color: 'var(--accent)', borderBottom: '2px solid var(--accent)' }}>Operador</th>
-                <th style={{ padding: '.8rem .6rem', textAlign: 'center', fontFamily: 'var(--fm)', fontSize: '.55rem', letterSpacing: '.18em', textTransform: 'uppercase', fontWeight: 700, color: 'var(--mute)', borderBottom: '2px solid var(--accent)' }}>Ecommerce<br/>B2C</th>
-                <th style={{ padding: '.8rem .6rem', textAlign: 'center', fontFamily: 'var(--fm)', fontSize: '.55rem', letterSpacing: '.18em', textTransform: 'uppercase', fontWeight: 700, color: 'var(--mute)', borderBottom: '2px solid var(--accent)' }}>Cuenta<br/>empresa</th>
-                <th style={{ padding: '.8rem .6rem', textAlign: 'center', fontFamily: 'var(--fm)', fontSize: '.55rem', letterSpacing: '.18em', textTransform: 'uppercase', fontWeight: 700, color: 'var(--mute)', borderBottom: '2px solid var(--accent)' }}>Marca<br/>propia</th>
-                <th style={{ padding: '.8rem .6rem', textAlign: 'center', fontFamily: 'var(--fm)', fontSize: '.55rem', letterSpacing: '.18em', textTransform: 'uppercase', fontWeight: 700, color: 'var(--mute)', borderBottom: '2px solid var(--accent)' }}>Despacho<br/>+ retiro</th>
-                <th style={{ padding: '.8rem .6rem', textAlign: 'center', fontFamily: 'var(--fm)', fontSize: '.55rem', letterSpacing: '.18em', textTransform: 'uppercase', fontWeight: 700, color: 'var(--mute)', borderBottom: '2px solid var(--accent)' }}>Pauta<br/>digital</th>
-                <th style={{ padding: '.8rem .6rem', textAlign: 'center', fontFamily: 'var(--fm)', fontSize: '.55rem', letterSpacing: '.18em', textTransform: 'uppercase', fontWeight: 700, color: 'var(--mute)', borderBottom: '2px solid var(--accent)' }}>SEO + AEO<br/>mayorista</th>
+                <th style={{ padding: '.8rem .9rem', textAlign: 'left', fontFamily: 'var(--fm)', fontSize: '.58rem', letterSpacing: '.18em', textTransform: 'uppercase', fontWeight: 800, color: 'var(--accent)', borderBottom: '2px solid var(--accent)' }}>Operador</th>
+                <th style={{ padding: '.8rem .5rem', textAlign: 'center', fontFamily: 'var(--fm)', fontSize: '.52rem', letterSpacing: '.14em', textTransform: 'uppercase', fontWeight: 700, color: 'var(--mute)', borderBottom: '2px solid var(--accent)' }}>Ecommerce<br/>B2C</th>
+                <th style={{ padding: '.8rem .5rem', textAlign: 'center', fontFamily: 'var(--fm)', fontSize: '.52rem', letterSpacing: '.14em', textTransform: 'uppercase', fontWeight: 700, color: 'var(--mute)', borderBottom: '2px solid var(--accent)' }}>Cuenta<br/>empresa</th>
+                <th style={{ padding: '.8rem .5rem', textAlign: 'center', fontFamily: 'var(--fm)', fontSize: '.52rem', letterSpacing: '.14em', textTransform: 'uppercase', fontWeight: 700, color: 'var(--mute)', borderBottom: '2px solid var(--accent)' }}>Marca<br/>propia</th>
+                <th style={{ padding: '.8rem .5rem', textAlign: 'center', fontFamily: 'var(--fm)', fontSize: '.52rem', letterSpacing: '.14em', textTransform: 'uppercase', fontWeight: 700, color: 'var(--mute)', borderBottom: '2px solid var(--accent)' }}>Atención<br/>mesón</th>
+                <th style={{ padding: '.8rem .5rem', textAlign: 'center', fontFamily: 'var(--fm)', fontSize: '.52rem', letterSpacing: '.14em', textTransform: 'uppercase', fontWeight: 700, color: 'var(--mute)', borderBottom: '2px solid var(--accent)' }}>Despacho<br/>auto + retiro</th>
+                <th style={{ padding: '.8rem .5rem', textAlign: 'center', fontFamily: 'var(--fm)', fontSize: '.52rem', letterSpacing: '.14em', textTransform: 'uppercase', fontWeight: 700, color: 'var(--mute)', borderBottom: '2px solid var(--accent)' }}>Pauta<br/>digital</th>
+                <th style={{ padding: '.8rem .5rem', textAlign: 'center', fontFamily: 'var(--fm)', fontSize: '.52rem', letterSpacing: '.14em', textTransform: 'uppercase', fontWeight: 700, color: 'var(--mute)', borderBottom: '2px solid var(--accent)' }}>SEO + AEO<br/>mayorista</th>
               </tr>
             </thead>
             <tbody>
               {[
-                /* MAYORISTAS FORMALES · competencia directa */
-                { cat: 'MAYORISTA FORMAL', label: 'Alvi (Walmart Chile)',         color: '#3b82f6', ecom: 'sí · maduro', emp: 'sí · cliente Alvi', toddo: 'sí · varias',     desp: 'sí · 24h SCL', ads: 'agresiva',   seo: 'top 3' },
-                { cat: 'MAYORISTA FORMAL', label: 'Mayorista 10',                  color: '#3b82f6', ecom: 'sí',         emp: 'sí',                toddo: 'no',              desp: 'sí',           ads: 'media',      seo: 'top 5' },
-                { cat: 'DISCOUNT',         label: 'Acuenta (Walmart)',             color: '#a855f7', ecom: 'sí',         emp: 'limitado',          toddo: 'sí · Acuenta',    desp: 'no',           ads: 'media',      seo: 'top 5' },
-                { cat: 'DISCOUNT',         label: 'Ekono (Walmart)',               color: '#a855f7', ecom: 'limitado',   emp: 'no',                toddo: 'sí · Aliada',     desp: 'no',           ads: 'media',      seo: 'medio' },
-                /* SUPERMERCADOS PREMIUM · referencia */
-                { cat: 'SUPERMERCADO',     label: 'Líder (Walmart)',               color: '#10b981', ecom: 'sí · líder', emp: 'sí',                toddo: 'sí · Aliada',     desp: 'sí · express', ads: 'masiva',     seo: 'top 1' },
-                { cat: 'SUPERMERCADO',     label: 'Tottus (Falabella)',            color: '#10b981', ecom: 'sí',         emp: 'sí',                toddo: 'sí · Tottus',     desp: 'sí',           ads: 'masiva',     seo: 'top 1' },
-                { cat: 'SUPERMERCADO',     label: 'Jumbo (Cencosud)',              color: '#10b981', ecom: 'sí',         emp: 'sí',                toddo: 'sí · Cuisine&Co', desp: 'sí',           ads: 'masiva',     seo: 'top 1' },
-                { cat: 'SUPERMERCADO',     label: 'Unimarc (SMU)',                 color: '#10b981', ecom: 'sí',         emp: 'no',                toddo: 'sí · Selecta',    desp: 'sí',           ads: 'media',      seo: 'top 2' },
-                /* ALMACENES + TRADICIONALES · clientes potenciales */
-                { cat: 'TRADICIONAL',      label: 'Almacenes de barrio',           color: '#f59e0b', ecom: 'no',         emp: 'cuenta corriente', toddo: 'no',              desp: 'el almacén entrega', ads: 'no', seo: 'no' },
-                { cat: 'TRADICIONAL',      label: 'Vega Central / La Vega',        color: '#f59e0b', ecom: 'no',         emp: 'no formal',         toddo: 'no',              desp: 'no',           ads: 'no',         seo: 'no' },
+                /* MAYORISTAS FORMALES GRANDES */
+                { cat: 'MAYORISTA FORMAL', label: 'Alvi (Walmart Chile)',          color: '#3b82f6', ecom: 'sí · maduro',  emp: 'sí · cliente Alvi', toddo: 'sí · varias',     mesón: 'sí',         desp: 'sí · 24h SCL',   ads: 'agresiva',  seo: 'top 3' },
+                { cat: 'MAYORISTA FORMAL', label: 'Mayorista 10 (Walmart)',         color: '#3b82f6', ecom: 'sí',           emp: 'sí',                toddo: 'no',              mesón: 'sí',         desp: 'sí',             ads: 'media',     seo: 'top 5' },
+
+                /* MAYORISTAS REGIONALES CHILENOS · competencia más cercana a La Oferta */
+                { cat: 'MAYORISTA REGIONAL', label: 'Taleb',                       color: '#0891b2', ecom: 'no',           emp: 'sí · RUT',         toddo: 'no',              mesón: 'fuerte',     desp: 'sí · flota propia', ads: 'baja',     seo: 'medio' },
+                { cat: 'MAYORISTA REGIONAL', label: 'Teba (Tega)',                 color: '#0891b2', ecom: 'no',           emp: 'sí · cuenta',      toddo: 'no',              mesón: 'fuerte',     desp: 'sí',             ads: 'baja',     seo: 'medio' },
+                { cat: 'MAYORISTA REGIONAL', label: 'Bodega 12',                   color: '#0891b2', ecom: 'no',           emp: 'sí',                toddo: 'no',              mesón: 'fuerte',     desp: 'sí',             ads: 'baja',     seo: 'bajo' },
+                { cat: 'MAYORISTA REGIONAL', label: 'Distribuidora Cerrillos',     color: '#0891b2', ecom: 'no',           emp: 'sí · cuenta',      toddo: 'no',              mesón: 'fuerte',     desp: 'sí',             ads: 'baja',     seo: 'bajo' },
+                { cat: 'MAYORISTA REGIONAL', label: 'Rincón Mayorista',            color: '#0891b2', ecom: 'no',           emp: 'sí',                toddo: 'no',              mesón: 'sí',         desp: 'sí',             ads: 'baja',     seo: 'bajo' },
+                { cat: 'MAYORISTA REGIONAL', label: 'Dimmer',                      color: '#0891b2', ecom: 'no',           emp: 'sí',                toddo: 'no',              mesón: 'sí',         desp: 'sí · pallets',   ads: 'baja',     seo: 'medio' },
+                { cat: 'MAYORISTA REGIONAL', label: 'Cuntevas',                    color: '#0891b2', ecom: 'no',           emp: 'sí · cuenta',      toddo: 'no',              mesón: 'sí',         desp: 'sí',             ads: 'baja',     seo: 'bajo' },
+
+                /* DISCOUNT */
+                { cat: 'DISCOUNT',         label: 'Acuenta (Walmart)',              color: '#a855f7', ecom: 'sí',           emp: 'limitado',          toddo: 'sí · Acuenta',    mesón: 'no',         desp: 'no',             ads: 'media',     seo: 'top 5' },
+                { cat: 'DISCOUNT',         label: 'Ekono (Walmart)',                color: '#a855f7', ecom: 'limitado',    emp: 'no',                toddo: 'sí · Aliada',     mesón: 'no',         desp: 'no',             ads: 'media',     seo: 'medio' },
+
+                /* SUPERMERCADOS · referencia */
+                { cat: 'SUPERMERCADO',     label: 'Líder (Walmart)',                color: '#10b981', ecom: 'sí · líder',  emp: 'sí',                toddo: 'sí · Aliada',     mesón: 'no',         desp: 'sí · express',   ads: 'masiva',    seo: 'top 1' },
+                { cat: 'SUPERMERCADO',     label: 'Tottus (Falabella)',             color: '#10b981', ecom: 'sí',           emp: 'sí',                toddo: 'sí · Tottus',     mesón: 'no',         desp: 'sí',             ads: 'masiva',    seo: 'top 1' },
+                { cat: 'SUPERMERCADO',     label: 'Jumbo (Cencosud)',               color: '#10b981', ecom: 'sí',           emp: 'sí',                toddo: 'sí · Cuisine&Co', mesón: 'no',         desp: 'sí',             ads: 'masiva',    seo: 'top 1' },
+                { cat: 'SUPERMERCADO',     label: 'Unimarc (SMU)',                  color: '#10b981', ecom: 'sí',           emp: 'no',                toddo: 'sí · Selecta',    mesón: 'no',         desp: 'sí',             ads: 'media',     seo: 'top 2' },
+
+                /* TRADICIONALES */
+                { cat: 'TRADICIONAL',      label: 'Almacenes de barrio',            color: '#f59e0b', ecom: 'no',           emp: 'cuenta corriente', toddo: 'no',              mesón: 'sí',         desp: 'el almacén entrega', ads: 'no',     seo: 'no' },
+                { cat: 'TRADICIONAL',      label: 'Vega Central / La Vega',         color: '#f59e0b', ecom: 'no',           emp: 'no formal',         toddo: 'no',              mesón: 'mayorista',  desp: 'no',             ads: 'no',        seo: 'no' },
+
                 /* LA OFERTA */
-                { cat: 'LA OFERTA · HOY',  label: 'laoferta.cl actual',            color: '#FF4D6D', ecom: 'NO',         emp: 'parcial',           toddo: 'sí (no destacada)', desp: 'no online',  ads: 'limitada',   seo: 'bajo' },
-                { cat: 'LA OFERTA · 2027', label: 'Con toma integral (esta propuesta)', color: '#C6FF3A', ecom: '✓ 4 estilos', emp: '✓ B2B+B2C',  toddo: '✓ landing /toddo', desp: '✓ 24h + click&collect 16 locales', ads: '✓ Motor Ads + Meta CAPI', seo: '✓ schema + Toddo brand' }
+                { cat: 'LA OFERTA · HOY',  label: 'laoferta.cl actual',             color: '#FF4D6D', ecom: 'NO',           emp: 'parcial',           toddo: 'sí (no destacada)', mesón: 'sí · 16 locales', desp: 'no online',   ads: 'limitada', seo: 'bajo' },
+                { cat: 'LA OFERTA · 2027', label: 'Con toma integral (esta propuesta)', color: '#C6FF3A', ecom: '✓ 4 estilos + Toddo', emp: '✓ B2B+B2C', toddo: '✓ landing /toddo', mesón: '✓ 16 locales operando', desp: '✓ 24h + click&collect + flota', ads: '✓ Motor Ads + Meta CAPI', seo: '✓ schema + Toddo brand' }
               ].map((row, i) => (
                 <tr key={i} style={{ background: i % 2 ? 'rgba(255,255,255,0.015)' : 'transparent', borderBottom: '1px solid var(--line)' }}>
                   <td style={{ padding: '.7rem .9rem', verticalAlign: 'middle' }}>
@@ -2898,12 +2913,13 @@ function AuditWebSection() {
                       </div>
                     </div>
                   </td>
-                  <td style={{ padding: '.7rem .6rem', textAlign: 'center', color: row.ecom === 'NO' ? '#FF4D6D' : (row.ecom.includes('✓') ? '#C6FF3A' : 'var(--mute)'), fontWeight: row.ecom === 'NO' || row.ecom.includes('✓') ? 700 : 400 }}>{row.ecom}</td>
-                  <td style={{ padding: '.7rem .6rem', textAlign: 'center', color: row.emp.includes('✓') ? '#C6FF3A' : 'var(--mute)', fontWeight: row.emp.includes('✓') ? 700 : 400 }}>{row.emp}</td>
-                  <td style={{ padding: '.7rem .6rem', textAlign: 'center', color: row.toddo.includes('✓') ? '#C6FF3A' : 'var(--mute)', fontWeight: row.toddo.includes('✓') ? 700 : 400 }}>{row.toddo}</td>
-                  <td style={{ padding: '.7rem .6rem', textAlign: 'center', color: row.desp.includes('✓') ? '#C6FF3A' : 'var(--mute)', fontWeight: row.desp.includes('✓') ? 700 : 400 }}>{row.desp}</td>
-                  <td style={{ padding: '.7rem .6rem', textAlign: 'center', color: row.ads.includes('✓') ? '#C6FF3A' : 'var(--mute)', fontWeight: row.ads.includes('✓') ? 700 : 400 }}>{row.ads}</td>
-                  <td style={{ padding: '.7rem .6rem', textAlign: 'center', color: row.seo.includes('✓') ? '#C6FF3A' : 'var(--mute)', fontWeight: row.seo.includes('✓') ? 700 : 400 }}>{row.seo}</td>
+                  <td style={{ padding: '.7rem .55rem', textAlign: 'center', fontSize: '.74rem', color: row.ecom === 'NO' ? '#FF4D6D' : (row.ecom.includes('✓') ? '#C6FF3A' : 'var(--mute)'), fontWeight: row.ecom === 'NO' || row.ecom.includes('✓') ? 700 : 400 }}>{row.ecom}</td>
+                  <td style={{ padding: '.7rem .55rem', textAlign: 'center', fontSize: '.74rem', color: row.emp.includes('✓') ? '#C6FF3A' : 'var(--mute)', fontWeight: row.emp.includes('✓') ? 700 : 400 }}>{row.emp}</td>
+                  <td style={{ padding: '.7rem .55rem', textAlign: 'center', fontSize: '.74rem', color: row.toddo.includes('✓') ? '#C6FF3A' : 'var(--mute)', fontWeight: row.toddo.includes('✓') ? 700 : 400 }}>{row.toddo}</td>
+                  <td style={{ padding: '.7rem .55rem', textAlign: 'center', fontSize: '.74rem', color: row.mesón.includes('✓') ? '#C6FF3A' : (row.mesón.includes('fuerte') ? '#0891b2' : 'var(--mute)'), fontWeight: row.mesón.includes('✓') || row.mesón.includes('fuerte') ? 700 : 400 }}>{row.mesón}</td>
+                  <td style={{ padding: '.7rem .55rem', textAlign: 'center', fontSize: '.74rem', color: row.desp.includes('✓') ? '#C6FF3A' : 'var(--mute)', fontWeight: row.desp.includes('✓') ? 700 : 400 }}>{row.desp}</td>
+                  <td style={{ padding: '.7rem .55rem', textAlign: 'center', fontSize: '.74rem', color: row.ads.includes('✓') ? '#C6FF3A' : 'var(--mute)', fontWeight: row.ads.includes('✓') ? 700 : 400 }}>{row.ads}</td>
+                  <td style={{ padding: '.7rem .55rem', textAlign: 'center', fontSize: '.74rem', color: row.seo.includes('✓') ? '#C6FF3A' : 'var(--mute)', fontWeight: row.seo.includes('✓') ? 700 : 400 }}>{row.seo}</td>
                 </tr>
               ))}
             </tbody>
@@ -2933,6 +2949,16 @@ function AuditWebSection() {
           <div className="d-kicker">INSIGHT 04</div>
           <h4 style={{ fontFamily: 'var(--f-display)', fontSize: '1.25rem', fontWeight: 400, textTransform: 'uppercase', letterSpacing: '0.012em', margin: '.3rem 0 .5rem' }}>Almacenes de barrio · canal B2B no atendido digitalmente</h4>
           <p style={{ fontSize: '.85rem', color: 'var(--mute)' }}>Los 50.000+ almacenes de barrio en Chile compran cada semana abarrotes — hoy lo hacen yendo físicamente o por WhatsApp con sus proveedores. <b style={{ color: '#a855f7' }}>Ningún mayorista chileno tiene un canal digital pensado para el almacenero</b> (cuenta empresa simple, pedido recurrente, factura electrónica auto). La Oferta puede capturar ese segmento con la misma plataforma.</p>
+        </div>
+        <div className="info-card d-tilt" style={{ borderColor: '#0891b2', borderLeft: '4px solid #0891b2', background: 'linear-gradient(135deg, rgba(8,145,178,0.08), transparent 80%)' }}>
+          <div className="d-kicker" style={{ color: '#0891b2' }}>INSIGHT 05</div>
+          <h4 style={{ fontFamily: 'var(--f-display)', fontSize: '1.25rem', fontWeight: 400, textTransform: 'uppercase', letterSpacing: '0.012em', margin: '.3rem 0 .5rem' }}>Mayoristas regionales chilenos · fuertes en mesón, ciegos en digital</h4>
+          <p style={{ fontSize: '.85rem', color: 'var(--mute)' }}>Taleb, Teba, Bodega 12, Distribuidora Cerrillos, Rincón, Dimmer y Cuntevas dominan la <b style={{ color: '#0891b2' }}>atención en mesón + despacho con flota propia</b> · pero ninguno tiene ecommerce, ninguno hace pauta digital, ninguno aparece en Google. Su cliente envejece y compra por hábito. La Oferta puede tomar el segmento joven/digital sin perder el mesón · combina lo mejor de los dos mundos.</p>
+        </div>
+        <div className="info-card d-tilt" style={{ borderColor: '#FF8A00', borderLeft: '4px solid #FF8A00', background: 'linear-gradient(135deg, rgba(255,138,0,0.08), transparent 80%)' }}>
+          <div className="d-kicker yellow">INSIGHT 06</div>
+          <h4 style={{ fontFamily: 'var(--f-display)', fontSize: '1.25rem', fontWeight: 400, textTransform: 'uppercase', letterSpacing: '0.012em', margin: '.3rem 0 .5rem' }}>Despacho automático · territorio en blanco</h4>
+          <p style={{ fontSize: '.85rem', color: 'var(--mute)' }}>Los mayoristas regionales despachan con flota pero <b style={{ color: '#FF8A00' }}>no tienen sistema online para programarlo</b> · el cliente debe llamar, mandar WhatsApp o pasar por mesón. La Oferta puede ser el primer mayorista chileno con <b>despacho automatizado online · pedido recurrente · ventana de entrega elegida · tracking</b> · el cambio de UX que el almacenero joven está esperando.</p>
         </div>
       </div>
 
