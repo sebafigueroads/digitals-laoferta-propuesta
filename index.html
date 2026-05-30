@@ -4380,7 +4380,7 @@ function EcommerceSection() {
         <div className="d-kicker">— ALCANCE</div>
         <h3>Toma integral del ecommerce · qué incluye</h3>
         <ul>
-          <li><b>Plataforma ecommerce nueva</b> · Shopify/WooCommerce según volumen · catálogo completo La Oferta</li>
+          <li><b>Plataforma ecommerce 100% a medida</b> · stack Next.js + Hapee CRM · catálogo completo La Oferta · código propio auditable</li>
           <li><b>Migración + carga inicial</b> · 6.000+ productos · categorías · imágenes · precios actualizados</li>
           <li><b>Checkout B2C optimizado</b> · pago Webpay/Mach + despacho 24h Santiago · click & collect en locales</li>
           <li><b>Integración con Hapee CRM</b> · captura · seguimiento abandono carrito · loyalty + retargeting</li>
@@ -4730,46 +4730,80 @@ function MailingSemanaSection() {
           fontFamily: fBody
         }}>
 
-          {/* 1 · TOP STRIP · editorial */}
+          {/* 1 · HEADER UNIFICADO · logo + meta en una sola pieza editorial */}
           <div style={{
-            background: BLACK,
-            color: '#fff',
-            padding: '.7rem 1.4rem',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            fontFamily: fBody,
-            fontSize: '.62rem',
-            letterSpacing: '.22em',
-            textTransform: 'uppercase',
-            fontWeight: 500
-          }}>
-            <span style={{ color: YELLOW }}>● Ofertas de la semana</span>
-            <span style={{ color: '#888' }}>LUN 24 SEP — DOM 30 SEP</span>
-          </div>
-
-          {/* 2 · HEADER · logo blanco sobre negro · sin cuadrado blanco */}
-          <div style={{
-            background: BLACK,
-            padding: '2.2rem 1.4rem 1.8rem',
-            textAlign: 'center',
+            background: `linear-gradient(180deg, ${BLACK} 0%, #1A1A1A 100%)`,
+            padding: 0,
             position: 'relative',
-            overflow: 'hidden',
-            borderBottom: `4px solid ${YELLOW}`
+            overflow: 'hidden'
           }}>
-            {/* Decoración sutil */}
-            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '2px', background: `linear-gradient(90deg, transparent, ${YELLOW}, transparent)` }}/>
-            <img src="assets/img/laoferta-logo-blanco.png" alt="La Oferta"
-              style={{ width: '210px', maxWidth: '55%', height: 'auto', display: 'inline-block', verticalAlign: 'middle', filter: 'drop-shadow(0 3px 10px rgba(0,0,0,0.4))' }}/>
+            {/* Línea dorada sutil arriba */}
+            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '1px', background: `linear-gradient(90deg, transparent, ${YELLOW}, transparent)`, opacity: 0.6 }}/>
+
+            {/* TOP META · edición + fecha · sobre fondo negro */}
             <div style={{
-              marginTop: '.9rem',
+              padding: '.85rem 1.6rem .7rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
               fontFamily: fBody,
-              fontSize: '.64rem',
-              letterSpacing: '.28em',
-              color: YELLOW,
+              fontSize: '.58rem',
+              letterSpacing: '.32em',
               textTransform: 'uppercase',
-              fontWeight: 700
-            }}>El mismo precio del local · ahora en tu inbox</div>
+              fontWeight: 600,
+              color: 'rgba(255,255,255,0.55)',
+              borderBottom: '1px solid rgba(255,255,255,0.08)'
+            }}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '.5rem' }}>
+                <span style={{ width: 6, height: 6, borderRadius: '50%', background: YELLOW, boxShadow: `0 0 8px ${YELLOW}` }}/>
+                Edición #38 · semanal
+              </span>
+              <span>LUN 24 SEP — DOM 30 SEP</span>
+            </div>
+
+            {/* LOGO + TAGLINE integrado */}
+            <div style={{
+              padding: '2.6rem 1.4rem 2.2rem',
+              textAlign: 'center',
+              position: 'relative'
+            }}>
+              {/* Glow amarillo sutil detrás del logo */}
+              <div style={{
+                position: 'absolute',
+                top: '50%', left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: '320px', height: '160px',
+                background: `radial-gradient(ellipse, ${YELLOW}22 0%, transparent 60%)`,
+                pointerEvents: 'none',
+                filter: 'blur(20px)'
+              }}/>
+
+              {/* Logo blanco grande, integrado al fondo negro */}
+              <img src="assets/img/laoferta-logo-blanco.png" alt="La Oferta"
+                style={{
+                  width: '240px', maxWidth: '62%', height: 'auto',
+                  display: 'inline-block', verticalAlign: 'middle',
+                  position: 'relative', zIndex: 2,
+                  filter: 'drop-shadow(0 4px 16px rgba(255,206,0,0.18)) drop-shadow(0 2px 4px rgba(0,0,0,0.6))'
+                }}/>
+
+              {/* Tagline elegante */}
+              <div style={{
+                marginTop: '1.1rem',
+                fontFamily: fBody,
+                fontSize: '.7rem',
+                letterSpacing: '.3em',
+                color: 'rgba(255,255,255,0.7)',
+                textTransform: 'uppercase',
+                fontWeight: 500,
+                position: 'relative', zIndex: 2
+              }}>
+                El mismo precio del local <span style={{ color: YELLOW, margin: '0 .5rem' }}>·</span> ahora en tu inbox
+              </div>
+            </div>
+
+            {/* Borde dorado abajo + acento triple */}
+            <div style={{ height: '3px', background: `linear-gradient(90deg, ${YELLOW} 0%, ${RED} 50%, ${YELLOW} 100%)` }}/>
           </div>
 
           {/* 3 · HERO BILLBOARD · imagen + overlay */}
@@ -5981,36 +6015,36 @@ function BancoPromoSection() {
 function Roadmap2026Section() {
   const fases = [
     {
-      id: 'h1-done', period: 'H1 2026', label: 'YA IMPLEMENTADO', color: '#10B981',
-      title: 'Base operativa B2B locales · 6 meses · cerrado',
+      id: 'h1-done', period: 'Abr–May 2026', label: 'YA IMPLEMENTADO · 2 meses', color: '#10B981',
+      title: 'Base operativa B2B locales · desde kick-off 1 Abril 2026',
       items: [
-        { mes: 'Ene–Feb', what: 'Setup Hapee CRM', done: 'Migración completa de base de clientes B2B desde planilla a Hapee. 12.000 contactos importados + segmentados por local + rubro' },
-        { mes: 'Feb–Mar', what: 'Landing B2B activa', done: 'laoferta.digitalsagencia.cl publicada · video hero · Club WhatsApp · cupón Mersán · 16 locales mapeados' },
-        { mes: 'Mar–Abr', what: 'Pauta B2B always-on', done: 'Meta + Google estructuradas con CAPI · scoring de leads Hapee · re-targeting · CPL bajó 32% vs baseline' },
-        { mes: 'Abr–May', what: 'Campaña Invierno', done: 'Sorteo de camiones utilitarios + pallets · 8.400 nuevos contactos · 23% de tasa de actualización de base' },
-        { mes: 'May–Jun', what: 'Reportería QBR', done: 'Dashboard Looker Studio live · narrativa Claude mensual · reuniones QBR con Pedro Gracia · plan H2 cerrado' }
+        { mes: 'Sem 1 Abr', what: 'Kick-off + accesos', done: 'Reunión de kick-off oficial con Pedro Gracia · accesos a Meta + Google + GHL · auditoría inicial del estado digital actual · alineación de objetivos H2' },
+        { mes: 'Abr 2026', what: 'Setup Hapee CRM', done: 'Migración de base de clientes B2B desde planilla a Hapee · contactos importados + segmentados por local + rubro · pipelines configurados' },
+        { mes: 'Abr–May', what: 'Landing B2B activa', done: 'laoferta.digitalsagencia.cl publicada · video hero · Club WhatsApp · cupón Mersán · 16 locales mapeados con horarios + direcciones' },
+        { mes: 'May 2026', what: 'Pauta B2B always-on', done: 'Meta + Google estructuradas con CAPI · scoring de leads Hapee · retargeting · primeras audiencias custom + lookalikes' },
+        { mes: 'May 2026', what: 'Campaña Invierno arranque', done: 'Sorteo de camiones utilitarios + pallets configurado · primeros 3.200 nuevos contactos B2B · 18% de tasa de actualización inicial' }
       ]
     },
     {
-      id: 'h2-todo', period: 'H2 2026', label: 'PRÓXIMO · POR FIRMAR', color: '#FF8A00',
-      title: 'Salto a B2C · 6 meses · esta propuesta',
+      id: 'h2-todo', period: 'Jun–Dic 2026', label: 'PRÓXIMO · 7 meses · ESTA PROPUESTA', color: '#FF8A00',
+      title: 'Salto a B2C 360 · ecommerce + pauta + omnicanal',
       items: [
-        { mes: 'Jul', what: 'Aprobación + setup', done: 'Aprobación de dirección creativa (1 de los 3 ecommerce) · setup Webpay + Shopify/WooCommerce · migración asset library · setup Hapee B2C track separado' },
-        { mes: 'Ago', what: 'Diseño + dev MVP', done: 'Wireframes · diseño high-fidelity · dev del ecommerce elegido · integración Hapee + Webpay + Bsale facturación · catálogo inicial 500 SKU' },
-        { mes: 'Sep', what: 'Soft launch + beta', done: 'Beta cerrada con 200 clientes seleccionados · refinement UX · primeras ventas online medidas · feed Google Merchant activo' },
-        { mes: 'Oct', what: 'Pauta B2C piloto', done: 'Meta + Google PMax B2C · pixel server-side · ROAS objetivo 3.5x · email/SMS flows automatizados · 5.000 nuevos contactos B2C' },
-        { mes: 'Nov', what: 'Lanzamiento masivo', done: 'Apertura pública · campaña fin de año · WhatsApp Club B2C · creadores invitados a probar · cobertura prensa retail' },
+        { mes: 'Jun', what: 'Aprobación + arranque B2C', done: 'Aprobación de dirección creativa (1 de los 4 ecommerce) · setup Webpay + plataforma 100% a medida · setup Hapee B2C track separado · creative kit B2C' },
+        { mes: 'Jul', what: 'Dev MVP ecommerce', done: 'Wireframes · diseño high-fidelity · desarrollo del ecommerce elegido · integración Hapee + Webpay + Bsale facturación · catálogo inicial 500 SKU' },
+        { mes: 'Ago', what: 'Soft launch + beta', done: 'Beta cerrada con 200 clientes seleccionados · refinement UX · primeras ventas online medidas · feed Google Merchant activo · landing /toddo lanzada' },
+        { mes: 'Sep–Oct', what: 'Pauta B2C piloto', done: 'Meta + Google PMax B2C · pixel server-side · ROAS objetivo ×3 · email/SMS flows automatizados · 5.000 nuevos contactos B2C' },
+        { mes: 'Nov', what: 'Lanzamiento masivo', done: 'Apertura pública · campaña fin de año · WhatsApp Club B2C · creadores invitados a probar · cobertura prensa retail · catálogo completo 6.000 SKU' },
         { mes: 'Dic', what: 'Optimización + cierre año', done: 'A/B tests por landing · optimización checkout · análisis ticket promedio B2B vs B2C · informe anual + plan 2027' }
       ]
     },
     {
-      id: 'h2-paralelo', period: 'H2 2026 · paralelo', label: 'CON HAPEE', color: '#1B3A8C',
+      id: 'h2-paralelo', period: 'Jun–Dic 2026 · paralelo', label: 'CON HAPEE', color: '#1B3A8C',
       title: 'Hapee se sigue puliendo en paralelo',
       items: [
-        { mes: 'Jul-Ago', what: 'WhatsApp Business API', done: 'Integración nativa de WhatsApp Business API a Hapee · plantillas aprobadas · 8 canales segmentados B2B + B2C · bot de respuesta inicial' },
-        { mes: 'Ago-Sep', what: 'IA agents conversacionales', done: 'Agentes IA propios entrenados en catálogo + atención · cotización express conversacional · escalamiento humano si lead caliente' },
-        { mes: 'Oct-Nov', what: 'Marketing automation', done: '6 flujos B2B + 8 flujos B2C automatizados · welcome · carrito abandonado · re-compra · puntos plus · birthday · win-back · NPS' },
-        { mes: 'Nov-Dic', what: 'Atribución multi-touch', done: 'Modelo de atribución propio · trackeo cross-canal · dashboard ejecutivo con vista B2B + B2C unificada · ROI por línea' }
+        { mes: 'Jun–Jul', what: 'WhatsApp Business API', done: 'Integración nativa de WhatsApp Business API a Hapee · plantillas aprobadas · 8 canales segmentados B2B + B2C · bot de respuesta inicial' },
+        { mes: 'Ago–Sep', what: 'IA agents conversacionales', done: 'Agentes IA propios entrenados en catálogo + atención · cotización express conversacional · escalamiento humano si lead caliente' },
+        { mes: 'Oct–Nov', what: 'Marketing automation', done: '6 flujos B2B + 8 flujos B2C automatizados · welcome · carrito abandonado · re-compra · puntos plus · birthday · win-back · NPS' },
+        { mes: 'Nov–Dic', what: 'Atribución multi-touch', done: 'Modelo de atribución propio · trackeo cross-canal · dashboard ejecutivo con vista B2B + B2C unificada · ROI por línea' }
       ]
     },
     {
@@ -6027,19 +6061,19 @@ function Roadmap2026Section() {
     <section>
       <SectionHead num="05.5"
         title="Roadmap 2026 · <em>lo hecho + lo que viene</em>"
-        desc="Timeline real de la operación La Oferta × Digitals. H1 ya está implementado (B2B base + Hapee + campañas + sorteos). H2 es el siguiente nivel: ecommerce B2C, omnicanal completo, Hapee madurando con WhatsApp Business + agentes IA. Q1 2027 vamos con todo a la segunda mitad del año."/>
+        desc="Timeline real de la operación La Oferta × Digitals. Kick-off oficial el 1 de abril 2026. Los primeros 2 meses ya están implementados (B2B base + Hapee + landing + pauta arrancada). Lo siguiente: ecommerce B2C, omnicanal completo, Hapee madurando con WhatsApp Business + agentes IA. Q1 2027 vamos con todo a la segunda mitad del año."/>
 
       {/* RESUMEN · 4 KPIS GRANDES */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px', marginBottom: '1.6rem' }}>
         <div className="info-card" style={{ borderTop: '4px solid #10B981', textAlign: 'left' }}>
-          <div className="d-kicker red">H1 · COMPLETADO</div>
+          <div className="d-kicker red">YA HECHO · 2 meses</div>
           <div style={{ fontFamily: 'var(--f-display)', fontSize: '2.4rem', fontWeight: 800, color: '#10B981', letterSpacing: '-0.04em', lineHeight: 1 }}>5 hitos</div>
-          <div style={{ fontSize: '.75rem', color: 'var(--shell-mute)', marginTop: '.4rem' }}>Base B2B + Hapee + campaña invierno</div>
+          <div style={{ fontSize: '.75rem', color: 'var(--shell-mute)', marginTop: '.4rem' }}>Kick-off 1 Abr → hoy · B2B base + Hapee + landing</div>
         </div>
         <div className="info-card" style={{ borderTop: '4px solid #FF8A00', textAlign: 'left' }}>
-          <div className="d-kicker yellow">H2 · POR FIRMAR</div>
+          <div className="d-kicker yellow">PRÓXIMO · 7 meses</div>
           <div style={{ fontFamily: 'var(--f-display)', fontSize: '2.4rem', fontWeight: 800, color: '#FF8A00', letterSpacing: '-0.04em', lineHeight: 1 }}>6 hitos</div>
-          <div style={{ fontSize: '.75rem', color: 'var(--shell-mute)', marginTop: '.4rem' }}>Ecommerce B2C + pauta + soft launch</div>
+          <div style={{ fontSize: '.75rem', color: 'var(--shell-mute)', marginTop: '.4rem' }}>Jun → Dic · Ecommerce B2C + pauta + launch</div>
         </div>
         <div className="info-card" style={{ borderTop: '4px solid #1B3A8C', textAlign: 'left' }}>
           <div className="d-kicker">PARALELO · HAPEE</div>
@@ -6135,7 +6169,7 @@ function InversionLaOfertaSection() {
             <h4 style={{ fontFamily: 'var(--f-display)', fontSize: '1.4rem', fontWeight: 400, textTransform: 'uppercase', marginBottom: '.7rem' }}>Toma integral ecommerce · D2</h4>
             <p style={{ fontSize: '.92rem', marginBottom: '.8rem' }}>Operación 360 completa: plataforma + soporte + integraciones + analítica + CRM. <b>No es un cargo aparte</b> · es el upgrade del fee actual al fee con canal B2C activo.</p>
             <ul style={{ fontSize: '.82rem' }}>
-              <li>Desarrollo + mantención plataforma ecommerce (Shopify/WooCommerce)</li>
+              <li>Desarrollo + mantención plataforma ecommerce 100% a medida (Next.js + Hapee)</li>
               <li>Operación + soporte continuo · 6.000+ SKU sincronizados</li>
               <li>Integración Ads (Meta CAPI + Google Enhanced Conversions + Merchant Center)</li>
               <li>Analítica server-side · GA4 + tracking cross-canal</li>
@@ -6152,12 +6186,12 @@ function InversionLaOfertaSection() {
         <div className="info-card d-tilt" style={{ borderColor: '#A78BFA', borderTop: '4px solid #A78BFA', background: 'linear-gradient(135deg, rgba(167,139,250,0.10), transparent 80%)' }}>
           <div className="d-kicker" style={{ color: '#A78BFA' }}>★ PLATAFORMA 100% A MEDIDA</div>
           <h4 style={{ fontFamily: 'var(--f-display)', fontSize: '1.4rem', fontWeight: 400, textTransform: 'uppercase', marginTop: '.3rem', marginBottom: '.6rem' }}>Sin WordPress · sin Wix · sin candados</h4>
-          <p style={{ fontSize: '.88rem', marginBottom: '.8rem' }}>Plataforma desarrollada a la medida del catálogo de La Oferta. Stack moderno (Next.js + Hapee + Shopify headless o WooCommerce). <b>Sin dependencia de un solo proveedor</b> · código auditable · escalable a millones de visitas sin sobrecostos.</p>
+          <p style={{ fontSize: '.88rem', marginBottom: '.8rem' }}>Plataforma desarrollada a la medida del catálogo de La Oferta. Stack moderno propio (Next.js + Hapee CRM + Webpay). <b>Sin dependencia de plataformas terceras</b> · código auditable · escalable a millones de visitas sin sobrecostos.</p>
           <ul style={{ fontSize: '.82rem' }}>
-            <li>Arquitectura propia · no es un theme comprado</li>
+            <li>Arquitectura propia · no es un theme comprado ni una plataforma de terceros</li>
             <li>Performance Core Web Vitals nivel Awwwards (TTI &lt; 1.5s)</li>
             <li>Datos de tu propiedad · exportables en cualquier momento</li>
-            <li>Sin licencias mensuales escondidas (Shopify Plus, Yoast Premium, etc.)</li>
+            <li>Sin licencias mensuales escondidas ni costos por venta</li>
           </ul>
         </div>
         <div className="info-card d-tilt" style={{ borderColor: '#22C55E', borderTop: '4px solid #22C55E', background: 'linear-gradient(135deg, rgba(34,197,94,0.10), transparent 80%)' }}>
