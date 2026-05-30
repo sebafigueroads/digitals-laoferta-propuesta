@@ -2853,9 +2853,92 @@ function AuditWebSection() {
         ))}
       </div>
 
+      {/* BENCHMARK · COMPETENCIA REAL · 4 CATEGORÍAS */}
+      <div className="d-kicker yellow" style={{ marginTop: '2.5rem', marginBottom: '1rem' }}>Benchmark · dónde está La Oferta vs la competencia real</div>
+      <div className="info-card" style={{ marginBottom: '1.2rem', padding: '0', overflow: 'hidden' }}>
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'var(--fb)', fontSize: '.78rem' }}>
+            <thead>
+              <tr style={{ background: 'var(--bg-deep)', color: 'var(--ink)' }}>
+                <th style={{ padding: '.8rem .9rem', textAlign: 'left', fontFamily: 'var(--fm)', fontSize: '.6rem', letterSpacing: '.2em', textTransform: 'uppercase', fontWeight: 800, color: 'var(--accent)', borderBottom: '2px solid var(--accent)' }}>Operador</th>
+                <th style={{ padding: '.8rem .6rem', textAlign: 'center', fontFamily: 'var(--fm)', fontSize: '.55rem', letterSpacing: '.18em', textTransform: 'uppercase', fontWeight: 700, color: 'var(--mute)', borderBottom: '2px solid var(--accent)' }}>Ecommerce<br/>B2C</th>
+                <th style={{ padding: '.8rem .6rem', textAlign: 'center', fontFamily: 'var(--fm)', fontSize: '.55rem', letterSpacing: '.18em', textTransform: 'uppercase', fontWeight: 700, color: 'var(--mute)', borderBottom: '2px solid var(--accent)' }}>Cuenta<br/>empresa</th>
+                <th style={{ padding: '.8rem .6rem', textAlign: 'center', fontFamily: 'var(--fm)', fontSize: '.55rem', letterSpacing: '.18em', textTransform: 'uppercase', fontWeight: 700, color: 'var(--mute)', borderBottom: '2px solid var(--accent)' }}>Marca<br/>propia</th>
+                <th style={{ padding: '.8rem .6rem', textAlign: 'center', fontFamily: 'var(--fm)', fontSize: '.55rem', letterSpacing: '.18em', textTransform: 'uppercase', fontWeight: 700, color: 'var(--mute)', borderBottom: '2px solid var(--accent)' }}>Despacho<br/>+ retiro</th>
+                <th style={{ padding: '.8rem .6rem', textAlign: 'center', fontFamily: 'var(--fm)', fontSize: '.55rem', letterSpacing: '.18em', textTransform: 'uppercase', fontWeight: 700, color: 'var(--mute)', borderBottom: '2px solid var(--accent)' }}>Pauta<br/>digital</th>
+                <th style={{ padding: '.8rem .6rem', textAlign: 'center', fontFamily: 'var(--fm)', fontSize: '.55rem', letterSpacing: '.18em', textTransform: 'uppercase', fontWeight: 700, color: 'var(--mute)', borderBottom: '2px solid var(--accent)' }}>SEO + AEO<br/>mayorista</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                /* MAYORISTAS FORMALES · competencia directa */
+                { cat: 'MAYORISTA FORMAL', label: 'Alvi (Walmart Chile)',         color: '#3b82f6', ecom: 'sí · maduro', emp: 'sí · cliente Alvi', toddo: 'sí · varias',     desp: 'sí · 24h SCL', ads: 'agresiva',   seo: 'top 3' },
+                { cat: 'MAYORISTA FORMAL', label: 'Mayorista 10',                  color: '#3b82f6', ecom: 'sí',         emp: 'sí',                toddo: 'no',              desp: 'sí',           ads: 'media',      seo: 'top 5' },
+                { cat: 'DISCOUNT',         label: 'Acuenta (Walmart)',             color: '#a855f7', ecom: 'sí',         emp: 'limitado',          toddo: 'sí · Acuenta',    desp: 'no',           ads: 'media',      seo: 'top 5' },
+                { cat: 'DISCOUNT',         label: 'Ekono (Walmart)',               color: '#a855f7', ecom: 'limitado',   emp: 'no',                toddo: 'sí · Aliada',     desp: 'no',           ads: 'media',      seo: 'medio' },
+                /* SUPERMERCADOS PREMIUM · referencia */
+                { cat: 'SUPERMERCADO',     label: 'Líder (Walmart)',               color: '#10b981', ecom: 'sí · líder', emp: 'sí',                toddo: 'sí · Aliada',     desp: 'sí · express', ads: 'masiva',     seo: 'top 1' },
+                { cat: 'SUPERMERCADO',     label: 'Tottus (Falabella)',            color: '#10b981', ecom: 'sí',         emp: 'sí',                toddo: 'sí · Tottus',     desp: 'sí',           ads: 'masiva',     seo: 'top 1' },
+                { cat: 'SUPERMERCADO',     label: 'Jumbo (Cencosud)',              color: '#10b981', ecom: 'sí',         emp: 'sí',                toddo: 'sí · Cuisine&Co', desp: 'sí',           ads: 'masiva',     seo: 'top 1' },
+                { cat: 'SUPERMERCADO',     label: 'Unimarc (SMU)',                 color: '#10b981', ecom: 'sí',         emp: 'no',                toddo: 'sí · Selecta',    desp: 'sí',           ads: 'media',      seo: 'top 2' },
+                /* ALMACENES + TRADICIONALES · clientes potenciales */
+                { cat: 'TRADICIONAL',      label: 'Almacenes de barrio',           color: '#f59e0b', ecom: 'no',         emp: 'cuenta corriente', toddo: 'no',              desp: 'el almacén entrega', ads: 'no', seo: 'no' },
+                { cat: 'TRADICIONAL',      label: 'Vega Central / La Vega',        color: '#f59e0b', ecom: 'no',         emp: 'no formal',         toddo: 'no',              desp: 'no',           ads: 'no',         seo: 'no' },
+                /* LA OFERTA */
+                { cat: 'LA OFERTA · HOY',  label: 'laoferta.cl actual',            color: '#FF4D6D', ecom: 'NO',         emp: 'parcial',           toddo: 'sí (no destacada)', desp: 'no online',  ads: 'limitada',   seo: 'bajo' },
+                { cat: 'LA OFERTA · 2027', label: 'Con toma integral (esta propuesta)', color: '#C6FF3A', ecom: '✓ 4 estilos', emp: '✓ B2B+B2C',  toddo: '✓ landing /toddo', desp: '✓ 24h + click&collect 16 locales', ads: '✓ Motor Ads + Meta CAPI', seo: '✓ schema + Toddo brand' }
+              ].map((row, i) => (
+                <tr key={i} style={{ background: i % 2 ? 'rgba(255,255,255,0.015)' : 'transparent', borderBottom: '1px solid var(--line)' }}>
+                  <td style={{ padding: '.7rem .9rem', verticalAlign: 'middle' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '.6rem' }}>
+                      <span style={{ width: 6, height: 28, background: row.color, borderRadius: '2px', flexShrink: 0 }}/>
+                      <div>
+                        <div style={{ fontFamily: 'var(--fm)', fontSize: '.52rem', letterSpacing: '.18em', color: row.color, textTransform: 'uppercase', fontWeight: 800 }}>{row.cat}</div>
+                        <div style={{ fontFamily: 'var(--fb)', fontSize: '.85rem', fontWeight: 700, color: 'var(--ink)', marginTop: '.15rem' }}>{row.label}</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td style={{ padding: '.7rem .6rem', textAlign: 'center', color: row.ecom === 'NO' ? '#FF4D6D' : (row.ecom.includes('✓') ? '#C6FF3A' : 'var(--mute)'), fontWeight: row.ecom === 'NO' || row.ecom.includes('✓') ? 700 : 400 }}>{row.ecom}</td>
+                  <td style={{ padding: '.7rem .6rem', textAlign: 'center', color: row.emp.includes('✓') ? '#C6FF3A' : 'var(--mute)', fontWeight: row.emp.includes('✓') ? 700 : 400 }}>{row.emp}</td>
+                  <td style={{ padding: '.7rem .6rem', textAlign: 'center', color: row.toddo.includes('✓') ? '#C6FF3A' : 'var(--mute)', fontWeight: row.toddo.includes('✓') ? 700 : 400 }}>{row.toddo}</td>
+                  <td style={{ padding: '.7rem .6rem', textAlign: 'center', color: row.desp.includes('✓') ? '#C6FF3A' : 'var(--mute)', fontWeight: row.desp.includes('✓') ? 700 : 400 }}>{row.desp}</td>
+                  <td style={{ padding: '.7rem .6rem', textAlign: 'center', color: row.ads.includes('✓') ? '#C6FF3A' : 'var(--mute)', fontWeight: row.ads.includes('✓') ? 700 : 400 }}>{row.ads}</td>
+                  <td style={{ padding: '.7rem .6rem', textAlign: 'center', color: row.seo.includes('✓') ? '#C6FF3A' : 'var(--mute)', fontWeight: row.seo.includes('✓') ? 700 : 400 }}>{row.seo}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* INSIGHTS A APROVECHAR · 4 cards */}
+      <div className="d-kicker yellow" style={{ marginTop: '1.8rem', marginBottom: '1rem' }}>Insights a aprovechar · oportunidades que nadie está tomando</div>
+      <div className="info-grid cols-2" style={{ marginBottom: '1.6rem' }}>
+        <div className="info-card d-tilt" style={{ borderColor: '#C6FF3A', borderLeft: '4px solid #C6FF3A', background: 'linear-gradient(135deg, rgba(198,255,58,0.08), transparent 80%)' }}>
+          <div className="d-kicker" style={{ color: '#C6FF3A' }}>INSIGHT 01</div>
+          <h4 style={{ fontFamily: 'var(--f-display)', fontSize: '1.25rem', fontWeight: 400, textTransform: 'uppercase', letterSpacing: '0.012em', margin: '.3rem 0 .5rem' }}>Mayorista híbrido · vacío competitivo claro</h4>
+          <p style={{ fontSize: '.85rem', color: 'var(--mute)' }}>Alvi y Mayorista 10 venden mayorista B2B pero <b>su ecommerce está pensado para empresas</b> (login obligatorio, RUT, factura). El comprador final que quiere ahorrar mayorista sin RUT no tiene dónde ir online. La Oferta puede ser el <b style={{ color: '#C6FF3A' }}>primer mayorista híbrido B2B+B2C real</b> con checkout abierto.</p>
+        </div>
+        <div className="info-card d-tilt" style={{ borderColor: '#FFCE00', borderLeft: '4px solid #FFCE00', background: 'linear-gradient(135deg, rgba(255,206,0,0.08), transparent 80%)' }}>
+          <div className="d-kicker yellow">INSIGHT 02</div>
+          <h4 style={{ fontFamily: 'var(--f-display)', fontSize: '1.25rem', fontWeight: 400, textTransform: 'uppercase', letterSpacing: '0.012em', margin: '.3rem 0 .5rem' }}>Marca propia Toddo no compite con Aliada ni Selecta</h4>
+          <p style={{ fontSize: '.85rem', color: 'var(--mute)' }}>Líder Aliada, Tottus Selecta, Cuisine&Co (Jumbo) son marcas propias con identidad débil — los clientes las usan por necesidad, no las eligen. Toddo tiene la oportunidad de construir <b style={{ color: '#FFCE00' }}>una marca propia con landing dedicada, storytelling y comparativa abierta de precios</b> · ninguna otra marca propia chilena hace esto.</p>
+        </div>
+        <div className="info-card d-tilt" style={{ borderColor: '#3b82f6', borderLeft: '4px solid #3b82f6', background: 'linear-gradient(135deg, rgba(59,130,246,0.08), transparent 80%)' }}>
+          <div className="d-kicker">INSIGHT 03</div>
+          <h4 style={{ fontFamily: 'var(--f-display)', fontSize: '1.25rem', fontWeight: 400, textTransform: 'uppercase', letterSpacing: '0.012em', margin: '.3rem 0 .5rem' }}>16 locales = ventaja logística vs ecommerce puros</h4>
+          <p style={{ fontSize: '.85rem', color: 'var(--mute)' }}>Líder Express despacha en 24h con flota propia · La Oferta puede igualarlo con <b style={{ color: '#3b82f6' }}>click & collect en 16 locales</b> (RM + regiones) que ya están operando, sin invertir en flota. El comprador elige: retiro gratis hoy o despacho a domicilio mañana. Ningún mayorista del mercado lo ofrece.</p>
+        </div>
+        <div className="info-card d-tilt" style={{ borderColor: '#a855f7', borderLeft: '4px solid #a855f7', background: 'linear-gradient(135deg, rgba(168,85,247,0.08), transparent 80%)' }}>
+          <div className="d-kicker">INSIGHT 04</div>
+          <h4 style={{ fontFamily: 'var(--f-display)', fontSize: '1.25rem', fontWeight: 400, textTransform: 'uppercase', letterSpacing: '0.012em', margin: '.3rem 0 .5rem' }}>Almacenes de barrio · canal B2B no atendido digitalmente</h4>
+          <p style={{ fontSize: '.85rem', color: 'var(--mute)' }}>Los 50.000+ almacenes de barrio en Chile compran cada semana abarrotes — hoy lo hacen yendo físicamente o por WhatsApp con sus proveedores. <b style={{ color: '#a855f7' }}>Ningún mayorista chileno tiene un canal digital pensado para el almacenero</b> (cuenta empresa simple, pedido recurrente, factura electrónica auto). La Oferta puede capturar ese segmento con la misma plataforma.</p>
+        </div>
+      </div>
+
       <div className="info-card" style={{ borderColor: 'var(--accent)', background: 'linear-gradient(135deg, var(--accent-soft), transparent 80%)' }}>
         <h4>La síntesis · <span className="accent">por qué tomar el B2C ahora</span></h4>
-        <p>El cliente final ya decide su carro semanal en el móvil antes de salir de la casa. Si laoferta.cl no permite ver stock por local, calcular ahorro vs supermercados, comprar online y retirar en local, La Oferta pierde el primer touchpoint <em>antes de que el cliente piense en el local</em>. La toma integral del canal B2C (sección 03.4 con 4 estilos + landing Toddo + calculadora) cierra ese gap sin tocar lo que ya funciona en B2B.</p>
+        <p>El cliente final ya decide su carro semanal en el móvil antes de salir de la casa. Si laoferta.cl no permite ver stock por local, calcular ahorro vs supermercados, comprar online y retirar en local, La Oferta pierde el primer touchpoint <em>antes de que el cliente piense en el local</em>. La toma integral del canal B2C (sección 03.4 con 4 estilos + landing Toddo + calculadora) cierra ese gap sin tocar lo que ya funciona en B2B · y posiciona a La Oferta en un espacio competitivo donde nadie está jugando: el mayorista híbrido digital.</p>
       </div>
     </section>
   );
